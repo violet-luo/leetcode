@@ -4,5 +4,6 @@ Memory Usage: 14.5 MB, less than 98.36% of Python3 online submissions for Remove
 """
 
 def removeDuplicates(nums):    
-    nums[:] = sorted(set(nums))
+    #Use nums[:] instead of nums to preserve the order of nums when it's referred in the return statement
+    nums[:] = sorted(set(nums)) 
     return len(nums)
