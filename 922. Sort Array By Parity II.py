@@ -1,4 +1,7 @@
-# Beats 82%
+"""
+Runtime: 220 ms, faster than 81.66% of Python3 online submissions for Sort Array By Parity II.
+Memory Usage: 15.5 MB, less than 39.13% of Python3 online submissions for Sort Array By Parity II.
+"""
 
 class Solution:
     def sortArrayByParityII(self, A: List[int]) -> List[int]:
