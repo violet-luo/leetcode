@@ -1,6 +1,9 @@
 """
 Credit to @wenfengqiu
 The trick is that the last letter is always added. Except the last one, if one letter is less than its latter one, this letter is subtracted.
+
+Runtime: 48 ms, faster than 56.62% of Python3 online submissions for Roman to Integer.
+Memory Usage: 13.7 MB, less than 5.38% of Python3 online submissions for Roman to Integer.
 """
 
 def romanToInt(self, s):
