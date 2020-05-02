@@ -26,7 +26,8 @@ def mergeTwolists(l1, l2):
             
         current = current.next
     
-    #if one of the lists is at the end(means None), then the other one will append to the result directly.
+    # return the non None list
+    # if one of the lists is at the end(means None), then the other one will append to the result directly.
     current.next = l1 or l2
     
     return dummy.next
