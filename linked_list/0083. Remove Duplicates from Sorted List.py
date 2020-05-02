@@ -15,6 +15,7 @@ def deleteDuplicates(head):
     :rtype: listNode
     """
     current = head
+    # when current and current.next are not None
     while current and current.next:
         if current.val == current.next.val:
             current.next = current.next.next
