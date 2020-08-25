@@ -12,7 +12,7 @@ def swapPairs(self, head: ListNode) -> ListNode:
     dummy.next = head
     cur = dummy #dummy will not change and can be returned
 
-    if head is None:
+    if head is None: # and head.next is None: head does not have attribute None
         return 
     elif head and head.next is None:
         return head 
