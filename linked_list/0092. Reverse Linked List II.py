@@ -3,7 +3,8 @@
 Runtime: 24 ms, faster than 97.05% of Python3 online submissions for Reverse Linked List II.
 Memory Usage: 13.8 MB, less than 91.58% of Python3 online submissions for Reverse Linked List II.
 
-https://leetcode.com/problems/reverse-linked-list-ii/discuss/30709/Talk-is-cheap-show-me-the-code-(and-DRAWING)
+code: https://leetcode.com/problems/reverse-linked-list-ii/discuss/30672/Python-one-pass-iterative-solution
+drawing: https://leetcode.com/problems/reverse-linked-list-ii/discuss/30709/Talk-is-cheap-show-me-the-code-(and-DRAWING)
 
 """
 
