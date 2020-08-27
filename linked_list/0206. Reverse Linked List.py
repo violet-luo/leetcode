@@ -8,14 +8,11 @@ Tutorial: https://www.youtube.com/watch?v=XDO6I8jxHtA
 """
 
 # iterative
-def reverseList(head):
-    prev = None
-    
-    while head:
-        temp = head
-        head = head.next
-        temp.next = prev
-        prev = temp
+def reverse(self, head):
+    cur, prev = head, None 
+        
+    while cur:
+        cur.next, prev, cur = prev, cur, cur.next
     return prev
     
     
