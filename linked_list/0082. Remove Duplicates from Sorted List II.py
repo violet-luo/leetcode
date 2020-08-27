@@ -12,8 +12,7 @@ def deleteDuplicates(self, head: ListNode) -> ListNode:
     dummy.next = head
     
     # set up pre and cur pointers
-    pre = dummy
-    cur = head
+    pre, cur = dummy, head
     
     while cur:
         if cur.next and cur.val == cur.next.val:
