@@ -34,9 +34,6 @@ Memory Usage: 17.3 MB, less than 5.30% of Python3 online submissions for Linked 
 def hasCycle(self, head: ListNode) -> bool:
     res = set()
 
-    if head in set():
-        return True
-
     while head:
         if head in res:
             return True
