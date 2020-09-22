@@ -4,7 +4,7 @@
 
 Runtime: 36 ms, faster than 26.40% of Python3 online submissions for Implement Stack using Queues.
 Memory Usage: 13.8 MB, less than 58.53% of Python3 online submissions for Implement Stack using Queues.
-"
+"""
 
 def __init__(self):
     self.q = []
