@@ -1,0 +1,19 @@
+"""
+
+Runtime: 20 ms, faster than 98.04% of Python3 online submissions for Compare Version Numbers.
+Memory Usage: 14.1 MB, less than 5.26% of Python3 online submissions for Compare Version Numbers.
+
+"""
+
+
+def compareVersion(self, version1: str, version2: str) -> int:
+    versions1 = [int(v) for v in version1.split(".")]
+    versions2 = [int(v) for v in version2.split(".")]
+    for i in range(max(len(versions1),len(versions2))):
+        v1 = versions1[i] if i < len(versions1) else 0
+        v2 = versions2[i] if i < len(versions2) else 0
+        if v1 > v2:
+            return 1
+        elif v1 < v2:
+            return -1;
+    return 0
