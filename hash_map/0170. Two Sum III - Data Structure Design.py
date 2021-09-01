@@ -23,8 +23,7 @@ def __init__(self):
     # @return true if can be found or false
     def find(self, value):
         for num in self.count:
-            if value - num in self.count and \
-                (value - num != num or self.count[num] > 1):
+            if value - num in self.count and (value - num != num or self.count[num] > 1):
                 return True
         return False
 
