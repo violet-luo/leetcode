@@ -6,26 +6,32 @@ find: O(n)
 """
 
 def __init__(self):
-    # initialize your data structure here
+    # key是数字，value是数字出现的次数
     self.count = {}
         
-    # Add the number to an internal data structure.
-    # @param number {int}
-    # @return nothing
-    def add(self, number):
-        if number in self.count:
-            self.count[number] += 1
-        else:
-            self.count[number] = 1
+# Add the number to an internal data structure.
+# @param number {int}
+# @return nothing
+# 数字出现次数+1，如果这个数字第一次出现，则之前出现的次数为0
+def add(self, number):
+    if number in self.count:
+        self.count[number] += 1
+    else:
+        self.count[number] = 1
 
-    # Find if there exists any pair of numbers which sum is equal to the value.
-    # @param value {int}
-    # @return true if can be found or false
-    def find(self, value):
-        for num in self.count:
-            if value - num in self.count and (value - num != num or self.count[num] > 1):
-                return True
-        return False
+# Find if there exists any pair of numbers which sum is equal to the value.
+# @param value {int}
+# @return true if can be found or false
+def find(self, value):
+    # 遍历map中所有的key
+    for num1 in self.count:
+        # 寻找跟num1匹配的num2
+        num2 = value - num1
+        num2Cnt = 2 if (num1 == num2) else 1
+        # 如果找到，返回True.如果找不到，则出现次数为0
+        if self.num_to_cnt_map.get(num2, 0) >= num2Cnt:
+            return True
+    return False
 
 # Your TwoSum object will be instantiated and called as such:
 # twoSum = TwoSum()
