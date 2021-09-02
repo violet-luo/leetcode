@@ -41,24 +41,30 @@ find: O(n)
 """
 
 def __init__(self):
-        self.nums = []
-        
+   # list装升序数据，因为Two Sum需要在有序数列中寻找
+    self.nums = []
+    
 def add(self, number):
     self.nums.append(number)
     index = len(self.nums) - 1
-    while index > 0 and self.nums[index - 1] > self.nums[index]:
-        temp = self.nums[index - 1]
-        self.nums[index - 1] = self.nums[index]
-        self.nums[index] = temp
+    # 按照插入排序的方法， 加入新数字，保持nums升序
+    # 每次将数组最后一个元素作为插入元素，与它前面有序（已排好序）的数组元素依次进行比较
+    # 如果没有在正确的位置，交换两元素，继续下一轮比较
+    # 如果在正确的位置，结束
+    # 为什么要确保 index > 0 ? 因为需要获得数组中(index - 1)位置的数字
+    while index > 0 and self.nums[index-1] > self.nums[index]:
+        # 在list中，交换(index-1)和index对应的值
+        self.nums[index-1], self.nums[index] = self.nums[index], self.nums[index-1]
         index -= 1
-
-def find(self, value):
+   
+# 经典two sum, 在排序树组中用相向双指针寻找和为target的一对数字      
+def find(self, targetValue):
     left, right = 0, len(self.nums) - 1
-    while left < right:
+    whiel left < right:
         two_sum = self.nums[left] + self.nums[right]
-        if two_sum < value:
+        if two_sum < targetValue:
             left += 1
-        elif two_sum > value:
+        elif two_sum > targetValue:
             right -= 1
         else:
             return True
