@@ -1,19 +1,17 @@
-"""
+def findMin(self, nums):
+    if not nums:
+        return -1
 
-Runtime: 36 ms, faster than 85.60% of Python3 online submissions for Find Minimum in Rotated Sorted Array.
-Memory Usage: 14.4 MB, less than 6.92% of Python3 online submissions for Find Minimum in Rotated Sorted Array.
-
-"""
-
-def findMin(self, nums: List[int]) -> int:
     start, end = 0, len(nums) - 1
-
-    while start < end:
-        mid = start + (end - start) // 2
-
+    
+    # find the first element <= target
+    while start + 1 < end:
+        mid = (start + end) // 2
         if nums[mid] > nums[end]:
-            start = mid + 1
+            # 如果mid位置上的数字小于等于最右端的数字，区间向左移动
+            start = mid 
+        # 注意：题目声明不存在相等元素，所以这里else 等价于 mid < end
         else:
             end = mid
 
-    return nums[start]
+    return min(nums[start], nums[end])
