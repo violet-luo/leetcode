@@ -1,22 +1,18 @@
 def findSubtree(self, root):
-    self.minimum_weight = float('inf')
-    self.minimum_subtree_root = None
-    self.getTreeSum(root)
+    minimum, subtree, sum_of_root = self.helper(root)
+    return subtree
 
-    return self.minimum_subtree_root
-
-# 得到root为根的二叉树的所有节点之和    
-# 顺便打个擂台求出 min subtree
-def getTreeSum(self, root):
+def helper(self, root):
     if root is None:
-        return 0
+        return sys.maxsize, None, 0
 
-    left_weight = self.getTreeSum(root.left)
-    right_weight = self.getTreeSum(root.right)
-    root_weight = left_weight + right_weight + root.val 
+    left_minimum, left_subtree, left_sum = self.helper(root.left)
+    right_minimum, right_subtree, right_sum = self.helper(root.right)
 
-    if root_weight < self.minimum_weight:
-        self.minimum_weight = root_weight
-        self.minimum_subtree_root = root
+    sum_of_root = left_sum + right_sum + root.val 
+    if left_minimum == min(left_minimum, right_minimum, sum_of_root):
+        return left_minimum, left_subtree, sum_of_root
+    if right_minimum == min(left_minimum, right_minimum, sum_of_root):
+        return right_minimum, right_subtree, sum_of_root
 
-    return root_weight
+    return sum_of_root, root, sum_of_root
