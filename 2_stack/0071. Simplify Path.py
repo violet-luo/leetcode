@@ -1,0 +1,12 @@
+def simplifyPath(self, path):
+    path = path.split('/')
+    stack = []
+    for i in path:
+        # 遇到 ".." 则从栈顶弹出一个元素 (如果栈为空则不弹栈, 对应 "/../")
+        if i == '..':
+            if len(stack):
+                stack.pop()
+        # 遇到正常的目录名, 入栈
+        elif i != '.' and i != '':
+            stack.append(i)
+    return '/' + '/'.join(stack)
