@@ -15,5 +15,5 @@ def isIsomorphic(self, s: str, t: str) -> bool:
         elif t[i] in dic.values():
             return False
         else:
-            dic[s[i]] = t[i]
+            dic[s[i]] = t[i] #'e' = 'a'
     return True
