@@ -1,29 +1,22 @@
-"""
-
-Runtime: 36 ms, faster than 78.77% of Python3 online submissions for Rotate List.
-Memory Usage: 13.7 MB, less than 83.19% of Python3 online submissions for Rotate List.
-
-"""
-
 def rotateRight(self, head: ListNode, k: int) -> ListNode:
     if head is None:
         return None
 
     slow = fast = head
     length = 1
-
+    
+    # fast走到队尾
     while fast and fast.next:
         fast = fast.next
         length += 1
-
-    # LL Cycle
-    fast.next = head
-
-    # k might be longer than the length
-    k %= length
-
-    for _ in range(length-k-1):
-        slow = slow.next 
+    
+    fast.next = head # 环形链表
+    k %= length # k可能比len长
+    
+    # slow走到rotate之前的一个元素
+    for _ in range(length - k - 1):
+        slow = slow.next
+         
     ans = slow.next
-    slow.next = None
+    slow.next = None # 斩断 slow 和 ans 的指向
     return ans
