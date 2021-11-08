@@ -1,29 +1,22 @@
-"""
-
-Runtime: 72 ms, faster than 81.98% of Python3 online submissions for Palindrome Linked List.
-Memory Usage: 24.1 MB, less than 49.02% of Python3 online submissions for Palindrome Linked List.
-
-https://leetcode.com/problems/palindrome-linked-list/discuss/64689/Python-easy-to-understand-solution-with-comments-(operate-nodes-directly).
-
-"""
-
 def isPalindrome(self, head: ListNode) -> bool:
-        slow = fast = head
-        
-        while fast and fast.next:
-            fast = fast.next.next 
-            slow = slow.next
-        
-        # reverse the second half
-        bottom = None
-        while slow:
-            nxt = slow.next 
-            slow.next = bottom
-            bottom = slow 
-            slow = nxt 
-        # compare the first and second half
-        while bottom:
-            if bottom.val != head.val:
-                return False
-            head, bottom = head.next, bottom.next
-        return True
+   if head is None:
+        return True # 注意这题不是return None 或者可以不用加这两行
+   
+   slow = fast = head
+    
+   # 1. 先找到中点
+   while fast and fast.next:
+      slow = slow.next
+      fast = fast.next.next
+
+   # 2. 把后半段倒过来
+   prev = None # 这里和上题不同
+   while slow:
+      prev, prev.next, slow = slow, prev, slow.next
+
+   # 3. 前后比较
+   while prev:
+      if head.val != prev.val:
+         return False
+      head, prev = head.next, prev.next 
+   return True
