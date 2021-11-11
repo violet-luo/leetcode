@@ -4,7 +4,7 @@ def levelOrder(self, root):
 
     # 1. 把第一层的节点放到队列当中，先进先出，deque是双头queue, 头尾都可以push或pop
     queue = collections.deque([root]) # 而不是 from collections import deque
-    results = []
+    res = []
 
     # 2. while 队列非空
     while queue:
@@ -18,5 +18,5 @@ def levelOrder(self, root):
                 queue.append(node.left)
             if node.right:
                 queue.append(node.right)
-        result.append(level)
-    return results
+        res.append(level)
+    return res
