@@ -1,35 +1,27 @@
 #1. BFS
 def binaryTreeToLists(self, root):
-    result = []
-    if root is None:
-        return result
-        
-    import Queue
-    queue = Queue.Queue()
+    if not root:
+       return []
     
-    queue.put(root)
+    queue = collections.deque([root])
+    res = []
     
     dummy = ListNode(0)
     
-    lastNode = None
-    
-    while not queue.empty():
+    while queue:
         dummy.next = None
-        lastNode = dummy
-        size = queue.qsize()
-        for i in xrange(size):
-            head = queue.get()
-            lastNode.next = ListNode(head.val)
-            lastNode = lastNode.next
-
-            if head.left is not None:
-                queue.put(head.left)
-            if head.right is not None:
-                queue.put(head.right)
+        cur = dummy
+        for i in range(len(queue)):
+            head = queue.popleft()
+            cur.next = ListNode(head.val)
+            cur = cur.next
+            if head.left:
+                queue.append(head.left)
+            if head.right:
+                queue.append(head.right)  
+        res.append(dummy.next)
     
-        result.append(dummy.next)
-    
-    return result
+    return res
   
   
 #2.DFS
