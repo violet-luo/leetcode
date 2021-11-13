@@ -5,43 +5,37 @@ class UndirectedGraphNode:
 
 class Solution:
     def cloneGraph(self, node):
-        if not node:
-            return None
+       root = node # node之后会变，一定要copy一份
+       if not node:
+           return None
 
-        # 1. 找到所有点
-        nodes = self.find_nodes_by_bfs(node)
-        # 2. 复制所有点
-        mapping = self.copy_nodes(nodes)
-        # 3. 复制所有边
-        self.copy_edges(nodes, mapping)
+       # 1. 找到所有点
+       nodes = self.getNodes(node)
 
-        return mapping[node]
+       # 2. 复制所有点，将 旧->新 mapping存入哈希表
+       mapping = {}
+       for node in nodes:
+           mapping[node] = UndirectedGraphNode(node.label) # A => A'
 
-    # 1. 找到所有点，标准宽搜
-    def find_nodes_by_bfs(self, node):
-        queue = collections.deque([node])
-        visited = set([node]) # [A,B,C,D]
-        while queue:
-            curr_node = queue.popleft()
-            for neighbor in curr_node.neighbors:
-                if neighbor in visited:
-                    continue
-                queue.append(neighbor)
-                visited.add(neighbor)
+       # 3. 复制所有边/neighbors
+       for node in nodes:
+           new_node = mapping[node] # A => A'
+           # 旧点有哪些旧邻居，新点就有哪些新邻居
+           # A' => B'C', B => A'D', C' => A'D', D' => B'C'
+           for neighbor in node.neighbors:
+               new_neighbor = mapping[neighbor]
+               new_node.neighbors.append(new_neighbor)
 
-    # 2. 复制所有点
-    def copy_nodes(self, nodes):
-        mapping = {}
-        for node in nodes:
-            mapping[node]=UndirectedGraphNode(node.label)
-        return mapping # A => A'
+       return mapping[root]
 
-    # 3. 复制所有边
-    def copy_edges(self, nodes, mapping):
-        for node in nodes:
-            new_node = mapping[node]
-            # 旧点有哪些旧邻居，新点就有哪些新邻居
-            # A' => B'C', B => A'D', C' => A'D', D' => B'C' 
-            for neighbor in node.neighbors:
-                new_neighbor = mapping[neighbor]
-                new_node.neighbors.append(new_neighbor)
+   # 1. 找到所有点，标准宽搜
+   def getNodes(self, node):
+       queue = collections.deque([node])
+       res = set([node]) # [A,B,C,D]
+       while queue:
+           head = queue.popleft()
+           for neighbor in head.neighbors:
+               if neighbor not in res:
+                   res.add(neighbor)
+                   queue.append(neighbor)
+       return res
