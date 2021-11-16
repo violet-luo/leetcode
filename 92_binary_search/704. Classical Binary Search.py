@@ -1,3 +1,4 @@
+// 1. BFS
 def findPosition(self, nums, target):
     if len(nums) == 0 or nums == None:
         return -1
@@ -28,3 +29,16 @@ def findPosition(self, nums, target):
         return start
     else:
         return -1
+
+// 2. DFS
+def binary_search(nums, target, start, end): 
+    if start > end:
+        return None
+    else:
+        mid = (start + end) // 2
+        if nums[mid] == target:
+            return mid
+        elif nums[mid] > target:
+            return binary_search(nums, target, start, mid - 1) 
+        else:
+            return binary_search(nums, target, mid + 1, end)
