@@ -8,7 +8,7 @@ Memory Usage: 15.5 MB, less than 92.55% of Python3 online submissions for Merge 
 def merge(self, intervals: List[List[int]]) -> List[List[int]]:
     res = []
     # sort intervals by interval lower bound
-    intervals.sort(key=lambda x:x[0]) 
+    intervals.sort() 
     
     i = 0
     for interval in intervals:
