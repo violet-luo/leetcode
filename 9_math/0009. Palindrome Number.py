@@ -38,3 +38,7 @@ def isPalindrome(self, x: int) -> bool:
         b += x % 10
         x //= 10
     return a == b
+
+
+def isPalindrome(self, num):
+    return str(num) == str(num)[::-1]
