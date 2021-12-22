@@ -3,6 +3,7 @@ def count(arr, target):
     left = bisect_left(arr, target, 0, n)
     right = bisect_right(arr, target, left, n)  # use left as a lower bound
     return right - left
+
 def bisect_left(a, x, lo, hi):
     while lo < hi:
         mid = (lo+hi)//2
