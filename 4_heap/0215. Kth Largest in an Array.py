@@ -1,15 +1,13 @@
 # 1. Heap
 import heapq
-
-def findKthLargest(nums, k):
-    minHeap = []
-    for num in nums:
-        heapq.heappush(minHeap, num) # push the heap value onto the heap #[1,3,2]
-        if len(minHeap) > k:
-            heapq.heappop(minHeap) # pop and return the smallest item from the heap #[3,2]
-    return minHeap[0] #[5,6]
-
-findKthLargest([3,2,1,5,6,4],2)
+class Solution(object):
+	def findKthLargest(nums, k):
+	    minHeap = []
+	    for num in nums:
+	        heapq.heappush(minHeap, num) # push the heap value onto the heap #[1,3,2]
+	        if len(minHeap) > k:
+	            heapq.heappop(minHeap) # pop and return the smallest item from the heap #[3,2]
+	    return minHeap[0] #[5,6]
 
 def findKthLargest(self, nums: List[int], k: int) -> int:
     minHeap = []
