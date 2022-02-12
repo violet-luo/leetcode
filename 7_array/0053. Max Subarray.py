@@ -1,10 +1,12 @@
-def maxSubArray(self, nums):
-    # maxAns记录全局最大值 sum记录当前子数组的和
-    sum, maxSum = 0, -sys.maxsize
-    # 贪心
+def max_subarray(nums):
+    prefix_sum = 0 #记录前i个数的和
+   max_sum = -sys.maxsize #全局最大值
+   min_prefix_sum = 0 #记录前i个数中0-k的最小值
+    
     for num in nums:
-        sum += num
-        maxSum = max(maxSum, sum)
-        sum = max(sum, 0)
-
-    return maxSum
+        prefix_sum += num
+       # 因为min_prefix_sum会出现在两个运算中，所以后更新
+        max_sum = max(max_sum, prefix_sum - min_prefix_sum)
+        min_prefix_sum = min(min_prefix_sum, prefix_sum)
+        
+    return max_sum
