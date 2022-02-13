@@ -1,24 +1,13 @@
-def reverse_array(arr):
+def reverseArray(arr):
     dict = {}
     if len(arr) < 1:
-        return 
+        return
         
     for num in arr:
-        if str(num) == str(num)[::-1]:
-            dict[str(num)] = 1
-        elif str(num) not in dict and str(num)[::-1] not in dict:
-            dict[str(num)] = 1
-        elif str(num) in dict:
-            dict[str(num)] += 1
-            if dict[str(num)] > 2:
-                dict[str(num)] -= 1  
-        elif str(num)[::-1] in dict:
-            dict[str(num)[::-1]] += 1
-            if dict[str(num)[::-1]] > 2:
-                dict[str(num)[::-1]] -= 1
-              
-    result = 0
-    for d in dict:
-        result += dict[d]
-    
-    return result
+        str_num = str(num)     
+        if str_num not in dict:
+            dict[str_num] = 1     
+        elif str_num in dict and str_num[::-1] not in dict:
+            dict[str_num[::-1]] = 1            
+       
+    return sum(dict.values()) 
