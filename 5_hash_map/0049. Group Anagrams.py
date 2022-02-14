@@ -1,10 +1,10 @@
 def groupAnagrams(strs):
     dic = {}
 
-    for str in strs: # eat
-        key_str = ''.join(sorted(str)) # ate
-        if key_str in dic:
-            dic[key_str].append(str)
+    for str in strs:
+        sorted_str = ''.join(sorted(str))
+        if sorted_str in dic:
+            dic[sorted_str].append(str)
         else:
-            dic[key_str] = [str]
-    return list(dic.values())
+            dic[sorted_str] = [str]
+    return dic.values()
