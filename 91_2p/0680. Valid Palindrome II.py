@@ -2,7 +2,7 @@ def validPalindrome(self, s):
         left = 0
         right = len(s) - 1 
 
-        # edge case "ab" 本身就是回文串
+        # edge case "a" 本身就是回文串
         if left >= right:
             return True
 
