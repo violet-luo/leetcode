@@ -13,6 +13,16 @@ def firstUniqChar(s):
             return i
     return -1
 
+##
+import collections
+def firstUniqChar(s):
+    dic = collections.Counter(s) # {'a':2, 'b':1, 'c':1}
+
+    for idx, ch in enumerate(s):
+        if dic[ch] == 1:
+            return idx     
+    return -1
+
 """
 1. get
 """
