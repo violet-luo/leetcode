@@ -1,0 +1,15 @@
+def twoSum(nums, target):
+    # nlogn
+    nums.sort()
+
+    # n
+    left, right = 0, len(nums) - 1
+    while left < right: #没有等于
+        if nums[left] + nums[right] > target:
+            right-= 1
+        elif nums[left] + nums[right] < target:
+            left += 1
+        else:
+            return [nums[left], nums[right]]
+
+    return [-1, 1]
