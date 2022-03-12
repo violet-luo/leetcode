@@ -1,16 +1,11 @@
-//1. DFS
-def preorderTraversal(self, root):
-    res = []
-    self.dfs(root, res)
-    return res
-    
-def dfs(self, root, res):
-    if root:
-        res.append(root.val)
-        self.dfs(root.left, res)
-        self.dfs(root.right, res)
+# 1. DFS
+def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+    if root is None:
+        return []
 
-//2. BFS
+    return self.inorderTraversal(root.left) + [root.val] + self.inorderTraversal(root.right)
+
+# 2. BFS
 def inorderTraversal(self, root):
    if not root:
        return []
