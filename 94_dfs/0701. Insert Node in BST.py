@@ -1,11 +1,8 @@
-def insertNode(self, root, node):
-    return self.traverse(root, node)
-    
-def traverse(self, root, node):
-    if root is None:
-        return node
-    if root.val > node.val:
-        root.left = self.traverse(root.left, node)
+def insertIntoBST(self, root, val):
+    if not root:
+        return TreeNode(val)
+    if val < root.val:
+        root.left = self.insertIntoBST(root.left, val)
     else:
-        root.right = self.traverse(root.right, node)
+        root.right = self.insertIntoBST(root.right, val)
     return root
