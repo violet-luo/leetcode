@@ -1,22 +1,22 @@
-def twoSum6(self, nums, target):
+def twoSum6(nums, target):
     if not nums or len(nums) < 2:
         return 0
-
-    nums.sort()
-
+    
     count = 0
-    left, right = 0, len(nums) - 1
-    last_pair = (None, None)
-
-    while left < right:
-        if nums[left] + nums[right] == target:
-            if (nums[left], nums[right]) != last_pair:
+    nums.sort()
+    l, r = 0, len(nums) - 1
+    seen_pair = (None, None)
+    
+    while l < r:
+        two_sum = nums[l] + nums[r]
+        if two_sum == target:
+            if (nums[l], nums[r]) != seen_pair:
                 count += 1
-            last_pair = (nums[left], nums[right])
-            left, right = left + 1, right - 1
-        elif nums[left] + nums[right] > target:
-            right -= 1
+            seen_pair = (nums[l], nums[r])
+            l, r = l + 1, r - 1
+        elif two_sum > target:
+            r -= 1
         else:
-            left += 1
-
+            l += 1
+    
     return count
