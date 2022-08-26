@@ -3,7 +3,7 @@ def removeDuplicates(nums):
         return 0
     
     l = 0
-    for r in range(len(nums)):
+    for r in range(1, len(nums)):
         if nums[l] == nums[r]:
             r += 1
         else:
