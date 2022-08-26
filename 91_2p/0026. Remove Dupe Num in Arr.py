@@ -1,9 +1,9 @@
-def removeDuplicates(self, nums: List[int]) -> int:
+def removeDuplicates(nums):
     if not nums:
         return 0
-
-    l, r = 0, 1
-    while r in range(len(nums)):
+    
+    l = 0
+    for r in range(len(nums)):
         if nums[l] == nums[r]:
             r += 1
         else:
