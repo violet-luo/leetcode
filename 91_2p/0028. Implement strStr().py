@@ -1,7 +1,5 @@
 """
-
 1. Two Pointers
-
 """
 
 def strStr(self, haystack, needle):
