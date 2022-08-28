@@ -1,4 +1,17 @@
 def moveZeroes(self, nums):
+    l = 0
+
+    for r in range(len(nums)):
+        if nums[l] == 0 and nums[r] != 0:
+            nums[l], nums[r] = nums[r], nums[l]
+
+        if nums[l] != 0:
+            l += 1
+            
+"""
+"""
+
+def moveZeroes(self, nums):
     # fillPointer代表将被填充的指针，指向将被非0数填充的位置
     # movePointer代表将被前移的指针，指向被前移的非0数
     fillPointer, movePointer = 0, 0
