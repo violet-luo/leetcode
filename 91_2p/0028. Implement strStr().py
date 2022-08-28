@@ -1,20 +1,20 @@
 """
 
 1. Two Pointers
-Runtime: 32 ms, faster than 63.09% of Python3 online submissions for Implement strStr().
-Memory Usage: 14.2 MB, less than 8.23% of Python3 online submissions for Implement strStr().
 
 """
 
-def strStr(self, haystack: str, needle: str) -> int:
-    m, n = len(haystack), len(needle)
-
+def strStr(self, haystack, needle):
+    if not haystack or not needle:
+        return -1
     if needle == "":
         return 0
 
-    for i in range(m - n + 1):
+    h, n = len(haystack), len(needle)
+
+    for i in range(h - n + 1):
         for j in range(n):
-            if haystack[i+j] != needle[j]:
+            if haystack[i + j] != needle[j]:
                 break
             if j == n - 1:
                 return i
