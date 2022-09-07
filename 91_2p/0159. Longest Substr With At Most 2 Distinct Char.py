@@ -1,6 +1,7 @@
 def lengthOfLongestSubstringTwoDistinct(s):
-    l, arr_len = 0, 0
     counter = {}
+    l = 0
+    arr_len = 0
     
     for r in range(len(s)):
         counter[s[r]] = counter.get(s[r], 0) + 1
