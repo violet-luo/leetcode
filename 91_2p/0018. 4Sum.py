@@ -1,9 +1,9 @@
 def fourSum(self, numbers, target):
+    res = []
     if not numbers:
-        return []
+        return res
 
     nums = sorted(numbers)
-    results = []
 
     for i in range(len(nums)):
         # 经典去重套路
@@ -23,20 +23,20 @@ def fourSum(self, numbers, target):
             )
 
             for (c, d) in pairs:
-                results.append([nums[i], nums[j], c, d])
+                res.append([nums[i], nums[j], c, d])
 
-    return results
+    return res
 
-def find_two_sum_pairs(self, nums, left, right, target):
+def find_two_sum_pairs(self, nums, l, r, target):
     pairs = []
-    while left < right:
-        if nums[left] + nums[right] < target:
-            left += 1
-        elif nums[left] + nums[right] > target:
-            right -= 1
+    while l < r:
+        if nums[l] + nums[r] < target:
+            l += 1
+        elif nums[l] + nums[r] > target:
+            r -= 1
         else:
-            if not pairs or (nums[left], nums[right]) != pairs[-1]:
-                pairs.append((nums[left], nums[right]))
-            left += 1
-            right -= 1
+            if not pairs or (nums[l], nums[r]) != pairs[-1]:
+                pairs.append((nums[l], nums[r]))
+            l += 1
+            r -= 1
     return pairs
