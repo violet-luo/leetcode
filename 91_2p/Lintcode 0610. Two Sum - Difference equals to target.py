@@ -1,16 +1,13 @@
-def twoSum7(self, nums, target):
-    if not nums:
-        return [-1, -1]
-
+def twoSum7(nums, target):
     target = abs(target)
-    j = 1
-    for i in range(len(nums)):
-        j = max(j, i+1)
-        while j < len(nums) and nums[j] - nums[i] < target:
-            j += 1
-        if j >= len(nums):
-            break
-        if nums[j] - nums[i] == target:
-            return [nums[i], nums[j]]
-
+    l, r = 0, 1
+    while r < len(nums):
+        if l == r:
+            r += 1
+        if nums[r] - nums[l] > target:
+            l += 1
+        elif nums[r] - nums[l] < target:
+            r += 1
+        else:
+            return [nums[l], nums[r]]
     return [-1, -1]
