@@ -1,7 +1,11 @@
 def twoSum5(nums, target):
-    count = 0
+    n = len(nums)
+    if not nums or n < 2:
+        return 0
+        
     nums.sort()
-    l, r = 0, len(nums) - 1
+    count = 0
+    l, r = 0, n - 1
     
     while l < r：
         two_sum = nums[l] + nums[r]
