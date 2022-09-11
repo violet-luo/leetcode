@@ -1,4 +1,4 @@
-def binarySearch(nums, target):
+def firstPosition(nums, target):
     # 通用二分模板
     if not nums or not target:
         return -1
