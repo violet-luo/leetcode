@@ -3,30 +3,30 @@ def searchRange(nums, target):
         return [-1, -1]
 
     first, last = -1, -1
-   n = len(nums)
-    l, r = 0, n- 1 
+
+    l, r = 0, len(nums) - 1 
     while l + 1 < r:
         mid = (l + r) // 2 
         if nums[mid] >= target:
             r = mid
         else:
             l = mid
-    if nums[r] == target:
-        first = r
-    if nums[l] == target: # [2,2] first 由 left overwrite
+    if nums[l] == target:
         first = l
-    
-    l, r = 0, n - 1 
+    elif nums[r] == target:
+        first = r
+
+    l, r = 0, len(nums) - 1 
     while l + 1 < r:
         mid = (l + r) // 2 
         if nums[mid] <= target:
             l = mid
         else:
             r = mid
-    if nums[l] == target:
-        last = l
     if nums[r] == target:
         last = r
+    elif nums[l] == target:
+        last = l
 
     if first == -1 and last == -1:
         return [-1, -1]
