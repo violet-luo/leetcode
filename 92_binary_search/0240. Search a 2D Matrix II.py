@@ -1,9 +1,21 @@
-"""
+def searchMatrix(matrix, target):
+    if not matrix or not matrix[0]:
+        return 0
 
-Runtime: 40 ms, faster than 43.17% of Python3 online submissions for Search a 2D Matrix II.
-Memory Usage: 18.8 MB, less than 83.76% of Python3 online submissions for Search a 2D Matrix II.
-
-"""
+    n, m = len(matrix), len(matrix[0])
+    for row in matrix:
+        # locate the row
+        if row[0] <= target <= row[-1]:
+            l, r = 0, m - 1
+            while l <= r:
+                mid = (l + r) // 2
+                if row[mid] == target:
+                    return True
+                elif row[mid] < target:
+                    l = mid + 1
+                else:
+                    r = mid - 1
+    return False
 
 def searchMatrix(self, matrix, target):
     if len(matrix) == 0:

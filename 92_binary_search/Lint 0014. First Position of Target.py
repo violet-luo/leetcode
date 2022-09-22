@@ -5,7 +5,7 @@ def firstPosition(nums, target):
     l, r = 0, len(nums) - 1
     
     while l + 1 < r :
-        mid = l + (r - l) // 2
+        mid = (l + r) // 2
         if nums[mid] < target:
             l = mid
         else:
