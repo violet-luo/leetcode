@@ -6,6 +6,7 @@ DIRECTIONS = [
 class Solution:
     def shortestPath(self, grid, source, destination):
         queue = collections.deque([(source.x, source.y)])
+        # 与200不同
         # 记录从起点到(x,y)的最短距离，(x,y) -> shortest distance from start
         # 在python中，可以使用tuple存储横纵坐标，存入dict
         cell_to_dis_dict = {(source.x, source.y): 0}
@@ -25,6 +26,7 @@ class Solution:
                 if (next_x, next_y) in cell_to_dis_dict:
                     continue
                 queue.append((next_x, next_y))
+                # 与200不同
                 cell_to_dis_dict[(next_x, next_y)] = cell_to_dis_dict[(x,y)] + 1
         # 不能达到，返回-1
         return -1
