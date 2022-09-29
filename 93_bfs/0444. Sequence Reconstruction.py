@@ -1,7 +1,7 @@
 def sequenceReconstruction(self, org, seqs):
     graph = self.build_graph(seqs)
-    topo_order = self.topological_sort(graph)
-    return topo_order == org
+    order = self.topological_sort(graph)
+    return order == org
 
 def build_graph(self, seqs): # [[1,2],[1,3]]
     graph = {}
@@ -23,22 +23,24 @@ def topological_sort(self, graph):
     
     # 2. 将每个入度为0的点放入队列 queue 中作为起始节点
     queue = collections.deque([ node for node in nodes if indegree[node] == 0 ])
-    topo_order = []
+    order = []
     
     # 3. 不断从队列中拿出一个点，去掉这个点的所有连边，其他点的相应入度-1
     while queue:
-        # there must exist more than one top orders
+        # 比模板多了这个判断
+        # 如果queue里有超过一个节点，说明在刚刚遍历图的那一层出现了不止一个节点，直接返回None和org比对为False就行了
         if len(queue) > 1:
             return None
+        # 标准拓扑模板
         node = queue.popleft()
-        topo_order.append(node)
+        order.append(node)
         for neighbor in graph[node]:
             indegree[neighbor] -= 1
             if indegree[neighbor] == 0:
                 queue.append(neighbor)
 
-    if len(topo_order) == len(graph): # 比模板多了这个判断
-        return topo_order
+    if len(order) == len(graph): # 比模板多了这个判断
+        return order
 
     return None
 
