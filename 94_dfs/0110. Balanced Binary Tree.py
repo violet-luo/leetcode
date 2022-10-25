@@ -1,16 +1,16 @@
 def isBalanced(self, root):
     if not root:
         return True
-    
-    if not self.isBalanced(root.left):
+   if not self.isBalanced(root.left):
         return False
     if not self.isBalanced(root.right):
         return False
+        
+    return abs(self.getHeight(root.left) - self.getHeight(root.right)) <= 1
     
-    return abs(self.get_height(root.left) - self.get_height(root.right)) <= 1
-    
-
-def get_height(self, root):
-    if not root:
+def getHeight(self, node):
+    if not node:
         return 0
-    return max(self.get_height(root.left), self.get_height(root.right)) + 1
+    leftHeight = self.getHeight(node.left)
+    rightHeight = self.getHeight(node.right)
+    return max(leftHeight, leftHeight) + 1
