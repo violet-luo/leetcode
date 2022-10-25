@@ -1,14 +1,13 @@
-def isSymmetric(self, root):
+def isSymmetric(self, root: Optional[TreeNode]) -> bool:
     if not root:
         return True
-    return self.helper(root.left, root.right)
-    
-def symmetryChecker(self, l_root, r_root): # (2,2) #(3,3)
-    if not l_root and not r_root:
+    return self.isSameTree(root.left, root.right)
+
+def isSameTree(self, p, q):
+    if not p and not q:
         return True
-    if not l_root or not r_root:
+    elif not p or not q:
         return False
-    if l_root.val != r_root.val:
+    if p.val != q.val:
         return False
-        
-    return self.symmetryChecker(l_root.left, r_root.right) and right self.symmetryChecker(l_root.right, r_root.left)
+    return self.isSameTree(p.left, q.right) and self.isSameTree(p.right, q.left)
