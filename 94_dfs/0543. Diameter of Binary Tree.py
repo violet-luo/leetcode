@@ -1,7 +1,9 @@
-def diameterOfBinaryTree(self, root: Optional[TreeNode]) -> int:
+def diameterOfBinaryTree(self, root):
     return self.getHeight(root.left) + self.getHeight(root.right)
-
+    
 def getHeight(self, node):
     if not node:
         return 0
-    return max(self.getHeight(node.left), self.getHeight(node.right)) + 1
+    leftHeight = self.getHeight(node.left)
+    rightHeight = self.getHeight(node.right)
+    return max(leftHeight, leftHeight) + 1
