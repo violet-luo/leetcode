@@ -1,16 +1,23 @@
 def countNodes(self, root):
-    l_depth = self.getHeight(root, True)
-    r_depth = self.getHeight(root, False)
-
-    if l_depth == r_depth:
-        return 2 ** l_depth - 1
-    else:
-        return 1 + self.countNodes(root.left) + self.countNodes(root.right)
-
-def getHeight(self, root, isLeft):
-    if root is None:
+    if root == None:
         return 0
-    if isLeft:
-        return 1 + self.getHeight(root.left, isLeft)
+
+    leftHeight = self.getHeight(root.left)
+    rightHeight = self.getHeight(root.right)
+    
+    # 如果左子树的深度 = 右子树的深度，左子树为满二叉树
+    # 节点数 = 左子树的深度 + 右子树的深度 + 根节点
+    if leftHeight == rightHeight:
+        return (2 ** leftHeight - 1) + self.countNodes(root.right) + 1
+    # 如果左子树的深度 ＞ 右子树的深度，右子树为满二叉树
+    # 节点数 = 左子树的深度 + 右子树的深度 + 根节点
     else:
-        return 1 + self.getHeight(root.right, isLeft)
+        return (2 ** rightHeight - 1) + self.countNodes(root.left) + 1
+
+def getHeight(self, root:TreeNode):
+    height = 0
+    while root:
+        root = root.left
+        height += 1
+
+    return height
