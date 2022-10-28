@@ -1,5 +1,5 @@
 def buildTree(self, preorder, inorder):
-    if not preorder or not inorder:
+    if not inorder:
        return
     root = TreeNode(preorder[0]) # 前序的第一个数为根
     rootPos = inorder.index(preorder[0]) # 在中序中找到根的位置
