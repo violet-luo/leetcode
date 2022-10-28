@@ -1,9 +1,9 @@
-def rangeSumBST(self, root, L, R):
+def rangeSumBST(self, root, low, high):
     if not root:
-        return 0
-    if root.val < L:
-        return self.rangeSumBST(root.right, L, R)
-    elif root.val > R:
-        return self.rangeSumBST(root.left, L, R)
-    else:
-        return root.val + self.rangeSumBST(root.left, L, R) + self.rangeSumBST(root.right, L, R) 
+        return 0 
+    if root.val < low:
+        return self.rangeSumBST(root.right, low, high)
+    elif root.val > high:
+        return self.rangeSumBST(root.left, low, high)
+    else: # low < root.val < high
+        return root.val + self.rangeSumBST(root.left, low, high) + self.rangeSumBST(root.right, low, high)
