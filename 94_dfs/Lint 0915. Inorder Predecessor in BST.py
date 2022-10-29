@@ -6,7 +6,7 @@ def inorderPredecessor(self, root, p):
         return root.left
     else: # root.val < p.val
         node = self.inorderPredecessor(root.right, p)
-        if node is None:
+        if not node:
             return root
         else:
             return node
