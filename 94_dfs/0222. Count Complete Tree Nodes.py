@@ -1,6 +1,4 @@
-def invertTree(self, root):
+def countNodes(self, root):
     if not root:
-        return
-    root.left = self.invertTree(root.right)
-    root.right = self.invertTree(root.left)
-    return root
+        return 0
+    return self.countNodes(root.left) + self.countNodes(root.right) + 1
