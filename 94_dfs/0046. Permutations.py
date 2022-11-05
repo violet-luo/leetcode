@@ -1,6 +1,5 @@
 def permute(self, nums):
-    res = []  #存放符合条件结果的集合
-    subset = []  #用来存放符合条件的结果
+    res, subset = [], [] 
     self.backtrack(nums, res, subset)
     return res
 
