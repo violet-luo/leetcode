@@ -1,9 +1,9 @@
-def removeDuplicates(s):
+def removeDuplicates(self, s):
     res = []
-    
+
     for char in s:
-        if res and res[-1] == c:
+        if res and res[-1] == char:
             res.pop()
         else:
-            res.append()
+            res.append(char)
     return "".join(res)
