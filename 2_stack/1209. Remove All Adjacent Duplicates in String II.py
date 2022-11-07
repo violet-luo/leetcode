@@ -1,10 +1,10 @@
-def removeDuplicates(s, k):
-    st = []  # pair of (char, freq)
-    for c in s:
-        if st and st[-1][0] == c:
-            st[-1][1] += 1
+def removeDuplicates(self, s, k):
+    res = []  # pair of [char, freq]
+    for char in s: # [d, 1]
+        if res and res[-1][0] == char:
+            res[-1][1] += 1
         else:
-            st.append([c, 1])
-        if st[-1][1] == k:
-            st.pop()
-    return "".join(c * f for c, f in st)
+            res.append([char, 1])
+        if res[-1][1] == k:
+            res.pop()
+    return "".join(char * cnt for char, cnt in res) # ['a', 2]
