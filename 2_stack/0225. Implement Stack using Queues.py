@@ -1,26 +1,21 @@
-"""
+class MyStack:
+    def __init__(self):
+        self.q1 = collections.deque()
+        self.q2 = collections.deque()
+ 
+    def push(self, x):
+        self.q2.append(x)
+        while self.q1:
+            self.q2.append(self.q1.popleft())
+        self.q1, self.q2 = self.q2, self.q1
 
-1. One queue, 队列添加元素后，反转前n-1个元素，栈顶元素始终保留在队首 
+    def pop(self):
+        return self.q1.popleft()
 
-Runtime: 36 ms, faster than 26.40% of Python3 online submissions for Implement Stack using Queues.
-Memory Usage: 13.8 MB, less than 58.53% of Python3 online submissions for Implement Stack using Queues.
-"""
 
-def __init__(self):
-    self.q = []
+    def top(self):
+        return self.q1[0]
 
-def push(self, x: int) -> None:
-    self.q.append(x)
-    q_length = len(self.q)
-    while q_length > 1:
-        self.q.append(self.q.pop(0)) #反转前n-1个元素，栈顶元素始终保留在队首
-        q_length -= 1
 
-def pop(self) -> int:
-    return self.q.pop(0)
-
-def top(self) -> int:
-    return self.q[0]
-
-def empty(self) -> bool:
-    return len(self.q) == 0
+    def empty(self):
+        return not self.q1
