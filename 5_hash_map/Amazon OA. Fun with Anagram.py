@@ -1,10 +1,10 @@
 def funWithAnagrams(arr):
-    ans = []
-    dic = {}
+    res = []
+    seen = set()
  
-    for i in range(len(arr)):
-        word = " ".join(sorted(arr[i]))
-        if word not in dic:
-            ans.append(arr[i])
-            dic[word] = 1
-    return sorted(ans)
+    for word in arr:
+        anagram = "".join(sorted(word))
+        if anagram not in seen:
+            seen.add(anagram)
+            res.append(word)
+    return sorted(res)
