@@ -1,29 +1,12 @@
 def findRepeatedDnaSequences(self, s):
-    dic = {}
-    res = []
-    
-    for i in range(len(s) - 9): # 假设s长度为10,range(0,1)
-        seq = s[i:i+10]
-        if seq in dic:
-            dic[seq] += 1
-        else:
-            dic[seq] = 1
-    
-    for seq in dic:
-        if dic[seq] > 1:
-            res.append(seq)
-
-    return res
-  
-def findRepeatedDnaSequences(self, s):
-    dic = set()
+    seen = set()
     res = set()
     
     for i in range(len(s) - 9): # 假设s长度为10,range(0,1)
         seq = s[i:i+10]
-        if seq in dic:
+        if seq in seen:
             res.add(seq)
         else:
-            dic.add(seq)
+            seen.add(seq)
 
     return list(res)
