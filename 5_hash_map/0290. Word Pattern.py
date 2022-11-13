@@ -1,14 +1,15 @@
-def wordPattern(self, pattern, s):
+def wordPattern(self, s, t):
     dic = {}
-    s = s.split()
+    t = t.split()
+    if len(s) != len(t):
+        return False
 
-    for i in range(len(pattern)):
-        if pattern[i] in dic:
-            if dic[pattern[i]] != s[i]:
+    for i in range(len(s)):
+        if s[i] in dic:
+            if dic[s[i]] != t[i]:
                 return False
-        elif s[i] in dic.values(): #if s[i] is already matched with
+        elif t[i] in dic.values(): # 一定要加防止double matching # badc, baba
             return False
-            dic[pattern[i]] = s[i]
         else:
-            dic[pattern[i]] = s[i]
+            dic[s[i]] = t[i]
     return True
