@@ -1,36 +1,27 @@
 """
 1. Two Pointers
 
-Runtime: 56 ms, faster than 54.96% of Python3 online submissions for Linked List Cycle II.
-Memory Usage: 17 MB, less than 29.18% of Python3 online submissions for Linked List Cycle II.
-
 """
 
-def getIntersect(self, head):
-    slow = head
-    fast = head
-    
+def detectCycle(self, head):     
+    if not head or not head.next:
+        return None #不能是head #[1], -1会return[1]而不是-1
+        
+    fast, slow = head, head
     while fast and fast.next:
         slow = slow.next
         fast = fast.next.next
         if slow == fast:
-            return slow
+            break
+    
+    if slow == fast:
+        slow = head
+        while slow != fast:
+            slow = slow.next
+            fast = fast.next 
+        return slow 
+        
     return None
-    
-def detectCycle(self, head: ListNode) -> ListNode:
-    if head is None:
-        return None
-    
-    intersect = self.getIntersect(head)
-    if intersect is None:
-        return None
-    
-    ptr1 = head
-    ptr2 = intersect
-    while ptr1 != ptr2:
-        ptr1 = ptr1.next
-        ptr2 = ptr2.next
-    return ptr1
 
 
 """
