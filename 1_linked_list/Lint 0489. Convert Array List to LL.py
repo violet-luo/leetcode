@@ -1,7 +1,8 @@
 def toLinkedList(self, nums):
     dummy = ListNode(0)
-    curr = dummy
+    cur = dummy
+    
     for num in nums:
-        curr.next = ListNode(num)
-        curr = curr.next
+        cur.next = ListNode(num)
+        cur = cur.next
     return dummy.next
