@@ -1,25 +1,18 @@
-"""
+def removeNthFromEnd(self, head):
+    if not head or not head.next:
+       return #[1] return [1] instead of []
 
-Runtime: 28 ms, faster than 88.44% of Python3 online submissions for Swap Nodes in Pairs.
-Memory Usage: 13.9 MB, less than 29.99% of Python3 online submissions for Swap Nodes in Pairs.
-
-https://leetcode.com/problems/swap-nodes-in-pairs/discuss/171788/Python-or-Dummynode
-
-"""
-
-def swapPairs(self, head: ListNode) -> ListNode:
-    dummy = ListNode(-1)
+    dummy = ListNode(0)
     dummy.next = head
-    cur = dummy #dummy will not change and can be returned
+    cur = dummy
 
-    if head is None or head.next is None:
-        return head 
-    else:
-        while cur.next and cur.next.next:
-            first = cur.next
-            sec = cur.next.next
-            cur.next = sec
-            first.next = sec.next
-            sec.next = first
-            cur = cur.next.next
-        return dummy.next
+    while cur.next and cur.next.next:
+        fst, sec = cur.next, cur.next.next
+
+        cur.next = sec
+        fst.next = sec.next
+        sec.next = fst
+
+        cur = cur.next.next 
+
+    return dummy.next
