@@ -1,11 +1,10 @@
 def oddEvenList(self, head):
-    if head is None:
-        return head
+    if not head:
+        return
+    odd = odd_dummy = ListNode(0)
+    even = even_dummy = ListNode(0)
 
-    odd = oddHead = ListNode(0)
-    even = evenHead = ListNode(0)
-
-    i = 1 # 这步是灵魂
+    i = 1 # 因为是索引为奇数所以不能直接 head.val % 2 == 1
 
     while head:
         if i % 2 == 1:
@@ -18,6 +17,5 @@ def oddEvenList(self, head):
         head = head.next 
 
     even.next = None 
-    odd.next = evenHead.next
-
-    return oddHead.next
+    odd.next = even_dummy.next
+    return odd_dummy.next
