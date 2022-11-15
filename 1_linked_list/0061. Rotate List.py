@@ -1,11 +1,10 @@
-def rotateRight(self, head: ListNode, k: int) -> ListNode:
-    if head is None:
-        return None
-
+def rotateRight(self, head, k):
+    if not head:
+        return
     slow = fast = head
     length = 1
     
-    # fast走到队尾
+    #  1. 得到链表长度
     while fast and fast.next:
         fast = fast.next
         length += 1
@@ -17,6 +16,6 @@ def rotateRight(self, head: ListNode, k: int) -> ListNode:
     for _ in range(length - k - 1):
         slow = slow.next
          
-    ans = slow.next
-    slow.next = None # 斩断 slow 和 ans 的指向
-    return ans
+    res = slow.next # 4
+    slow.next = None # 3.next = None
+    return res
