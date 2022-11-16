@@ -1,18 +1,15 @@
 def removeDuplicates(self, head):
-    visited = set() # set and dict is O(1), list is O(n) exceeding time limit
-    
     if not head:
-        return head
-    
-    # 👁 一定要先加入头元素, 不然头元素可能会重复
-    visited.add(head.val)
+        return
+    visited = set() # set and dict is O(1), list is O(n) exceeding time limit
+    visited.add(head.val) # 要记得加入头元素
     
     cur = head
     while cur.next:
-        if cur.next.val not in visited:
-            visited.add(cur.next.val)
-            cur = cur.next
-        else:
+        if cur.next.val in visited:
             cur.next = cur.next.next
+        else:
+            visited.add(cur.next.val)
+            cur = cur.next            
 
     return head
