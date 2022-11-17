@@ -16,3 +16,5 @@ def insertionSortList(self, head):
             cur.next = node_to_insert.next
             node_to_insert.next = start.next
             start.next = node_to_insert
+
+    return dummy.next
