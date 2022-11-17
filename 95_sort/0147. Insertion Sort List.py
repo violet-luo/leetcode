@@ -1,31 +1,18 @@
-"""
-
-Runtime: 204 ms, faster than 76.82% of Python3 online submissions for Insertion Sort List.
-Memory Usage: 15.8 MB, less than 37.43% of Python3 online submissions for Insertion Sort List.
-
-https://leetcode.com/problems/insertion-sort-list/discuss/190913/Java-Python-with-Explanations
-
-"""
-
 def insertionSortList(self, head):
-    dummy = ListNode(0)
-    dummy.next = head
-    
-    while head and head.next:
-        if head.val > head.next.val:
-            nodeToInsert = head.next
-            nodeToInsertPre = dummy 
-            # traverse from dummy
-            while nodeToInsertPre.next.val < nodeToInsert.val:
-                nodeToInsertPre = nodeToInsertPre.next
-                
-            head.next = nodeToInsert.next
-            # insert nodeToInsert between nodeToInsertPre and nodeToInsertPre.next.
-            nodeToInsert.next = nodeToInsertPre.next
-            nodeToInsertPre.next = nodeToInsert
-        else:
-            head = head.next
-        
-    return dummy.next
-    
+    if not head:
+        return head
+    dummy = ListNode(0, head)
+    cur = head
 
+    while cur.next:
+        if cur.val <= cur.next.val:
+            cur = cur.next
+        else:
+            start = dummy #从头开始寻找插入位置，最终在start的后面
+            node_to_insert = cur.next
+            while start.next.val <= node_to_insert.val: #当start的next的值比待排的大
+                start = start.next
+
+            cur.next = node_to_insert.next
+            node_to_insert.next = start.next
+            start.next = node_to_insert
