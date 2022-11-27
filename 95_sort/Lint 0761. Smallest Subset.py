@@ -1,16 +1,17 @@
 def minElements(self, arr):
     n = len(arr)
-    halfSum = 0
+    sum = 0
+    res = 0
     
     for i in range(n):
-        halfSum = halfSum + arr[i]
-    halfSum = int(halfSum / 2)
+        sum = sum + arr[i]
+    half_sum = int(sum / 2)
     arr.sort(reverse = True)
-    res = 0
-    curr_sum = 0
+    
+    curr_sum = 0 
     for i in range(n):
         curr_sum += arr[i]
         res += 1
-        if curr_sum > halfSum:
+        if curr_sum > half_sum:
             return res
     return res
