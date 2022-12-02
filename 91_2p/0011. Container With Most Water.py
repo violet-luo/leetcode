@@ -1,12 +1,14 @@
-def maxArea(self, height):
-    l, r = 0, len(height) - 1
-    res = 0
-    while l < r:
-        area = min(height[l], height[r]) * (r - l)
-        res = max(res, area)
-        # l和r不是同时移动，将短板向中间收拢
-        if height[l] <= height[r]:
-            l += 1
+def maxArea(self, height: List[int]) -> int:
+    max_water = 0
+    left, right = 0, len(height) - 1
+    
+    while left < right:
+        min_height = min(height[left], height[right])
+        max_water = max(max_water, min_height * (right - left))
+        # 左右不是同时向中间移动，将短板向中间收拢
+        if height[left] <= height[right]:
+            left += 1
         else:
-            r -= 1
-    return ans
+            right -= 1
+    
+    return max_water
