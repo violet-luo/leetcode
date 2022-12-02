@@ -11,7 +11,7 @@ def twoSum(self, nums: List[int], target: int) -> List[int]:
     while left < right: # 需要两个数字所以没有等于
         two_sum = nums[left][0] + nums[right][0]
         if two_sum == target:
-            return sorted([nums[left][1], nums[right][1]]) # ⚠️而不是 return [left, right]
+            return sorted([nums[left][1], nums[right][1]]) # return idx 而不是 return [left, right]
         elif two_sum > target:
             right -= 1
         else:
