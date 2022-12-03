@@ -1,10 +1,11 @@
 def two_sum6(self, nums: List[int], target: int) -> int:
-    if not nums or len(nums) < 2:
+    n = len(nums)
+    if not nums or n< 2:
         return 0
 
     nums.sort()
     count = 0
-    left, right = 0, len(nums) - 1
+    left, right = 0, n - 1
     
     while left < right:
         two_sum = nums[left] + nums[right]
