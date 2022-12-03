@@ -10,7 +10,7 @@ def partitionArray(self, nums, k):
     while left <= right:
         while left <= right and nums[left] < k:
             left += 1
-        while left <= right and nums[right] >= k:
+        while left <= right and nums[right] >= k: # 不加等号会报错
             right -= 1
             
         if left <= right:
