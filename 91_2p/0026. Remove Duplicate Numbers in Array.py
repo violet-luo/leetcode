@@ -1,13 +1,11 @@
-def removeDuplicates(nums):
-    if not nums:
-        return 0
+def removeDuplicates(self, nums):
+    slow = 0
     
-    l = 0
-    for r in range(1, len(nums)):
-        if nums[l] == nums[r]:
-            r += 1
-        else:
-            nums[l + 1] = nums[r]
-            l += 1
-            r += 1
-    return l + 1
+    for fast in range(1, len(nums)): # range(len(nums)) 也可以
+        if nums[slow] == nums[fast]:
+            fast += 1
+        else: # 走到第一个不一样的
+            nums[slow + 1] = nums[fast]
+            slow += 1
+            fast += 1
+    return slow + 1 # slow是index, 所以数量要+1
