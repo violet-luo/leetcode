@@ -1,17 +1,17 @@
-def twoSum5(nums, target):
+def two_sum5(self, nums, target):
     n = len(nums)
     if not nums or n < 2:
         return 0
         
     nums.sort()
     count = 0
-    l, r = 0, n - 1
+    left, right = 0, n - 1
     
-    while l < r：
-        if nums[l] + nums[r] > target:
-            r -= 1
+    while left < right:
+        if nums[left] + nums[right] > target:
+            right -= 1
         else:
-            count += 1
-            l += 1
+            count += right - left
+            left += 1
             
     return count
