@@ -7,6 +7,7 @@ def threeSum(self, nums):
     nums.sort()
 
     for i in range(n):
+        # 经典去重套路，如果当前元素和左边元素一样，跳过
         if i > 0 and nums[i] == nums[i-1]:
             continue
 
