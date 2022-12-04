@@ -1,12 +1,12 @@
 def moveZeroes(self, nums):
-    l = 0
+    slow = 0
 
-    for r in range(len(nums)):
-        if nums[l] == 0 and nums[r] != 0:
-            nums[l], nums[r] = nums[r], nums[l]
+    for fast in range(len(nums)):
+        if nums[slow] == 0 and nums[fast] != 0:
+            nums[slow], nums[fast] = nums[fast], nums[slow]
 
-        if nums[l] != 0:
-            l += 1
+        if nums[slow] != 0:
+            slow += 1
             
 """
 """
