@@ -1,12 +1,12 @@
-def findRepeatedDnaSequences(s):
-    counter = {}
+def findRepeatedDnaSequences(self, s):
+    counter = set()
     res = []
     
-    for l in range(len(s) - 9):
-        r = l + 10
-        dna = s[l:r]
-        counter[dna] = counter.get(dna, 0) + 1
-        if counter[dna] == 2:
+    for i in range(len(s) - 9):
+        dna = s[i: i + 10]   
+        if dna in counter and dna not in res: # ❌ "AAAAAAAAAAAAA" -> ["AAAAAAAAAA","AAAAAAAAAA","AAAAAAAAAA"]
             res.append(dna)
-    
+        else:
+            counter.add(dna)
+            
     return res
