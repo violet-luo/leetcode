@@ -5,24 +5,17 @@ Three Scenarios
 3. 99+1=100
 """
 
-"""
 1. 
-
-Runtime: 32 ms, faster than 69.00% of Python3 online submissions for Plus One.
-Memory Usage: 14.4 MB, less than 12.65% of Python3 online submissions for Plus One.
-"""
-
-def plusOne(self, digits: List[int]) -> List[int]:
+def plusOne(digits: List[int]): #[1,2,9], [9,9]
     for i in range(len(digits)-1, -1, -1):
-        if digits[i] != 9:
+        if digits[i] != 9: # [1,3,0]
             digits[i] += 1
             return digits
         else:
-            digits[i] = 0
+            digits[i] = 0 # [1,2,0], [9, 0], [0,0]
             if digits[0] == 0:
-                digits.insert(0,1)
+                digits.insert(0,1) # [1,0,0]
                 return digits
-
 
 
 """
