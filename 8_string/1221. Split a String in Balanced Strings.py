@@ -1,11 +1,11 @@
-def balancedStringSplit(self, s: str) -> int:
+def balancedStringSplit(self, s):
     count = 0
-    flag = 0
-    for i in s:
-        if i == 'R':
-            flag += 1
-        else:
-            flag -= 1
-        if flag == 0:
+    res = 0
+    for i in range(len(s)):
+        if s[i] == 'R':
             count += 1
-    return count
+        else:
+            count -= 1
+        if count == 0:
+            res += 1
+    return res
