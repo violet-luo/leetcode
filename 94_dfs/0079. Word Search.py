@@ -32,5 +32,5 @@ class Solution:
             if self.dfs(x + dx, y + dy, word, index + 1, n, m, visited, board):
                 return True 
                 
-        visited.remove( (x,y) )     
+        visited.remove( (x,y) ) #回溯，走到(3,0)的E后退到(2，0)的C，往(0, -1)方向走      
         return False
