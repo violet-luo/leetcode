@@ -1,4 +1,23 @@
 def permute(self, nums):
+    res = []
+    subset = []
+
+    def backtrack(nums):
+        if len(subset) == len(nums):
+            return res.append(subset[:]) 
+        for i in range(len(nums)): #因为是集合而不是组合，所以从0开始遍历
+            if nums[i] in subset: #去重
+                continue
+            subset.append(nums[i])
+            backtrack(nums)
+            subset.pop()
+
+    backtrack(nums)
+    return res
+
+###
+
+def permute(self, nums):
     res, subset = [], [] 
     self.backtrack(nums, res, subset)
     return res
