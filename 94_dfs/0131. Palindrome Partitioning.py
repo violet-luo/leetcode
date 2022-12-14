@@ -1,4 +1,25 @@
 def partition(self, s):
+    res = []  
+    subset = []
+
+    def backtrack(s, start_index):
+        if start_index >= len(s):  # 递归终止条件
+            return res.append(subset[:])
+        for i in range(start_index,len(s)):
+            substring = s[start_index : i + 1]
+            if substring == substring[::-1]: 
+                subset.append(substring)
+            else:   # 不包含的话，会pop from empty list
+                continue
+            backtrack(s, i+1)  #寻找i+1为起始位置的子串
+            subset.pop()
+
+    backtrack(s,0)
+    return res
+
+###
+
+def partition(self, s):
     res, subset = [], []  
     self.backtrack(s, 0, res,subset)
     return res
