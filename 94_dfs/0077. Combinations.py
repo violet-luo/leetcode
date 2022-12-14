@@ -4,11 +4,9 @@ def combine(n, k):
 
     def backtrack(n, k, start_index):
         if len(subset) == k: # 与78的区别
-            res.append(subset[:]) 
-            return
-
+            return res.append(subset[:])
         for i in range(start_index, n - (k - len(subset)) + 2): # 剪枝
-            subset.append(i) # 与78的区别，不需要append所有的子集
+            subset.append(i)
             backtrack(n, k, i + 1)
             subset.pop()
             
