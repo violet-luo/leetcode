@@ -1,4 +1,29 @@
 def combinationSum(self, candidates, target):
+    res = []
+    subset = []
+    sum = 0
+
+    def backtrack(candidates, target, sum, start_index):
+        if sum > target:
+            return 
+        if sum == target:
+            return res.append(subset[:])
+        for i in range(start_index, len(candidates)):
+            if sum + candidates[i] > target:
+                return 
+            sum += candidates[i]
+            subset.append(candidates[i])
+            backtrack(candidates, target, sum, i)
+            sum -= candidates[i]
+            subset.pop()
+    
+    candidates = sorted(candidates) # 不知道为什么不sort过不了
+    backtrack(candidates, target, 0, 0)
+    return res
+
+###
+
+def combinationSum(self, candidates, target):
     res, subset = [], []
     candidates = sorted(candidates)  #需要排序
     self.backtrack(candidates, target, 0, 0, res, subset)
