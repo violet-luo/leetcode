@@ -1,4 +1,4 @@
-def numIslands(self, grid: List[List[str]]) -> int:
+def numIslands(grid):
     if not grid or not grid[0]: return 0
     n, m = len(grid), len(grid[0])
 
@@ -7,16 +7,11 @@ def numIslands(self, grid: List[List[str]]) -> int:
         grid[x][y] = '0'
         while queue:
             x, y = queue.popleft()
-            for delta_x, delta_y in [(1, 0), (0, -1), (-1, 0), (0, 1)]:
-                next_x = x + delta_x
-                next_y = y + delta_y
-                if not is_valid(next_x, next_y):
-                    continue
-                queue.append((next_x, next_y))
-                grid[next_x][next_y] = '0'
-
-    def is_valid(x, y):
-        return 0 <= x < n and 0 <= y < m and grid[x][y] == '1'
+            for dx, dy in [(1, 0), (0, -1), (-1, 0), (0, 1)]:
+                new_x, new_y = x + dx, y + dy
+                if 0 <= new_x < n and 0 <= new_y < m and grid[new_x][new_y] == '1':
+                    queue.append((new_x, new_y))
+                    grid[new_x][new_y] = '0'
 
     islands = 0
     for i in range(n):
