@@ -1,3 +1,42 @@
+import collections
+class Solution:
+    def solve(self, board):
+        if not board: return 
+        n, m = len(board), len(board[0])
+
+        def bfs(x,y):
+            queue = collections.deque([(x,y)])
+            board[x][y] = '#'
+            
+            while queue:
+                x, y = queue.popleft()
+                for dx, dy in [(0, 1), (0, -1), (1, 0), (-1, 0)]:
+                    new_x, new_y = x + dx, y + dy
+                    if 0 <= new_x < len(board) and 0 <= new_y < len(board[0]) and board[new_x][new_y] == 'O':
+                        board[new_x][new_y] = '#'
+                        queue.append((new_x,new_y))
+        
+        for i in range(n):
+            if board[i][0] == 'O':
+                bfs(i,0)
+            if board[i][m-1] == 'O':
+                bfs(i,m-1)
+        
+        for j in range(m):
+            if board[0][j] == 'O':
+                bfs(0,j)
+            if board[n-1][j] == 'O':
+                bfs(n-1,j)
+        
+        for i in range(n):
+            for j in range(m):
+                if board[i][j] == '#':
+                    board[i][j] = 'O'
+                elif board[i][j] == 'O':
+                    board[i][j] = 'X'
+
+###
+
 def surroundedRegions(board):
     # inner function要在前
     # 将O先设置成D
