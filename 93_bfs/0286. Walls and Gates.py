@@ -1,4 +1,34 @@
-288. Walls and Gates
+def wallsAndGates(rooms):
+    if not rooms or not rooms[0]: return rooms
+    n, m = len(rooms), len(rooms[0])
+
+    def bfs(x, y):
+        queue = collections.deque([(x,y)])
+
+        while queue:
+            x, y = queue.popleft()
+            for dx, dy in [(0, 1), (0, -1), (1, 0), (-1, 0)]:
+                next_x, next_y = x+dx, y+dy
+                if is_invalid(next_x, next_y):
+                    continue
+                if rooms[next_x][next_y] > rooms[x][y] + 1:
+                    queue.append((next_x, next_y))
+                    rooms[next_x][next_y] = rooms[x][y] + 1
+
+    def is_invalid(x, y):
+        if x >= n or x < 0: return True 
+        if y >= m or y < 0: return True
+        if rooms[x][y] == -1: return True
+        return False
+
+    for i in range(n):
+        for j in range(m):
+            if rooms[i][j] == 0:
+                bfs(i, j)
+                
+    return rooms
+
+###
 
 def wallsAndGates(self, grid):
     if not grid or not grid[0]:
