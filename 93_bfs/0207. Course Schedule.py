@@ -1,3 +1,33 @@
+def canFinish(self, numCourses: int, prereq) -> bool:
+    # 1. 先建空图和空入度
+    graph = [[] for i in range(numCourses)]
+    indegree = [0] * numCourses
+    
+    # 2. 赋值图和入度
+    for course, precourse in prereq:
+        graph[precourse].append(course)
+        indegree[course] += 1
+    
+    # 3. 入度0加入queue
+    queue = collections.deque()
+    for i in range(numCourses):
+        if indegree[i] == 0:
+            queue.append(i)
+    
+    # 4. 遍历queue
+    num_taken = 0
+    while queue:
+        cur_course = queue.popleft()
+        num_taken += 1
+        for j in graph[cur_course]:
+            indegree[j] -= 1
+            if indegree[j] == 0:
+                queue.append(j)
+
+    return num_taken == numCourses
+
+###
+
 def canFinish(self, numCourses, prereq):
     # 构建图，代表先修课 -> 后修课的映射
     graph = [[] for i in range(numCourses)]
