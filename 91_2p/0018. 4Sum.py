@@ -1,14 +1,14 @@
 def fourSum(self, nums, target):
-    nums.sort()
     res = []
     n = len(nums)
+    nums.sort()
 
-    for i in range(0, n - 3):
+    for i in range(n):
         # i去重，去重模版，如果当前元素和左边元素一样，跳过
         if i and nums[i] == nums[i - 1]:
             continue
 
-        for j in range(i + 1, n - 2):
+        for j in range(i + 1, n):
             # j去重，当j和i相等的时候，只记录第一个j, 试例[2,2,2,2,2], 8
             if j != i + 1 and nums[j] == nums[j - 1]:
                 continue
