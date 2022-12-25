@@ -3,11 +3,11 @@ def two_sum7(self, nums, target):
     left, right = 0, 1
     
     while right < len(nums):
-        if left == r:
+        if left == right:
             right += 1
-        if nums[r] - nums[left] > target:
+        if nums[right] - nums[left] > target:
             left += 1
-        elif nums[r] - nums[left] < target:
+        elif nums[right] - nums[left] < target:
             right += 1
         else:
             return [nums[left], nums[right]]
