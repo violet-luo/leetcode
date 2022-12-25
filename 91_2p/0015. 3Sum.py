@@ -1,13 +1,12 @@
 def threeSum(self, nums):
-    res = []
     n = len(nums)
     if not nums or n < 3:
         return res
-    
     nums.sort()
-
+    res = []
+    
     for i in range(n):
-        # 经典去重套路，如果当前元素和左边元素一样，跳过
+        # i去重，去重模版，如果当前元素和左边元素一样，跳过
         if i > 0 and nums[i] == nums[i-1]:
             continue
 
@@ -18,10 +17,10 @@ def threeSum(self, nums):
                 res.append([nums[i], nums[left], nums[right]])
                 left += 1
                 right -= 1
-                # 去重
+                # left, right 去重
                 while left < right and nums[left] == nums[left - 1]:
                     left += 1
-                while left < right and nums[left] == nums[right + 1]:
+                while left < right and nums[right] == nums[right + 1]:
                     right -= 1
             elif three_sum < 0:
                 left += 1
