@@ -1,16 +1,14 @@
 def lengthOfLongestSubstring(s):
-    arr_len = 0
-    l, r = 0, 0
-    chars = set()
+    max_len, seen = 0, set()
+    n = len(s)
+    right = 0
+
+    for left in range(n):
+        while right < n and s[right] not in seen:
+            seen.add(s[right])
+            right += 1
+        # 走到第一个重复
+        max_len = max(max_len, right - left)
+        seen.remove(s[left])
     
-   # 不能是 for r in range(len(s))，r不是每loop一次都会移动，remove之后需要再跑一次add
-    while r < len(s):
-        if s[r] not in chars:
-            arr_len = max(arr_len, r - l + 1)
-            chars.add(s[r])
-            r += 1
-        else:
-            chars.remove(s[l])
-            l += 1
-    
-    return arr_len
+    return max_len
