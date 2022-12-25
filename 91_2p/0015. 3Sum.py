@@ -7,7 +7,7 @@ def threeSum(self, nums):
     
     for i in range(n):
         # i去重，去重模版，如果当前元素和左边元素一样，跳过
-        if i > 0 and nums[i] == nums[i-1]:
+        if i and nums[i] == nums[i-1]:
             continue
 
         left, right = i + 1, n - 1
