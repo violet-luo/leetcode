@@ -1,10 +1,13 @@
-def firstBadVersion(self, n):
-    l, r = 1, n # 题目定义从1开始
+def firstBadVersion(n):
+    start, end = 1, n # 题目定义从1开始
     
-    while l < r:
-        mid = (l + r) // 2
-        if isBadVersion(mid):
-            r = mid
+    while start + 1 < end:
+        mid = (start + end) // 2
+        if isBadVersion(mid): # 相当于first position == target
+            end = mid
         else:
-            l = mid + 1 # mid 查过了，从mid后面一个数开始查
-    return r
+            start = mid
+
+    if isBadVersion(start):
+        return start
+    return end
