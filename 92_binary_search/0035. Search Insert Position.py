@@ -6,11 +6,14 @@ def searchInsert(nums, target):
         mid = (l + r) // 2
         if nums[mid] < target:
             l = mid
-        else:
+        elif nums[mid] > target:
             r = mid
+        else:
+            r = mid # l = mid 也可以，[1,2,2,3] 2 插在哪个2都可以
     
-    if nums[l] >= target: # [1,2], 0
+    # 坑2：因为用 < 判定，所以先判定左边
+    if target <= nums[l]: # [1,2], 2
         return l
-    if nums[r] >= target: # [1,2], 1
+    if target <= nums[r]: # [1,2], 2
         return r
     return len(nums) # [1, 2], 3
