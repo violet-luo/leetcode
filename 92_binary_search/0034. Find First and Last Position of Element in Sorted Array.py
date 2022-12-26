@@ -31,8 +31,6 @@ def searchRange(nums, target):
     elif nums[l] == target:
         last = l
 
-    if first == -1 and last == -1:
-        return [-1, -1]
     return [first, last]
 
 def searchRange(nums, target):
