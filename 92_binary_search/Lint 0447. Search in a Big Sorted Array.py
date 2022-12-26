@@ -5,17 +5,13 @@ def searchBigSortedArray(nums, target):
     while nums.get(range_total - 1) < target:
         range_total = range_total * 2
     
-    # 二分模板
-    # l 也可以是 range_total // 2。但是写0也不会影响时间复杂度
-    # 如果target前rangeTotal中，则index范围为[0, rangeTotal - 1]
-    # O(logK)
     l, r = 0, range_total - 1
     while l + 1 < r:
         mid = (l + r) // 2
         if nums.get(mid) < target:
             l = mid
-        # 要点：为什么这里target == mid, 不直接返回？
-        # 因为在中点左边还可能存在更靠左的target
+        elif nums[mid] > target:
+            r = mid
         else:
             r = mid
 
