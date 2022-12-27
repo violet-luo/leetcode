@@ -1,9 +1,20 @@
-"""
+def mySqrt(self, x):
+    l, r = 0, x
 
-Runtime: 36 ms, faster than 59.06% of Python3 online submissions for Sqrt(x).
-Memory Usage: 14 MB, less than 99.98% of Python3 online submissions for Sqrt(x).
+    while l + 1 < r:
+        mid = (l + r) // 2
+        if mid * mid < x:
+            l = mid
+        elif mid * mid > x:
+            r = mid
+        else:
+            return mid 
+    
+    if r * r <= x: #不加等号 x = 1时会return0
+        return r 
+    return l
 
-"""
+###
 
 def mySqrt(self, x: int) -> int:
     l, r, ans = 0, x, -1
