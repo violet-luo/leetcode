@@ -1,9 +1,19 @@
-"""
+def hIndex(self, citations):
+    n = len(citations)
+    start, end = 0, n-1
+    while start + 1 < end:
+        mid = start + (end - start) // 2
+        if citations[mid] >= n - mid:
+            end = mid
+        else:
+            start = mid
+    if citations[start] >= n - start:
+        return n - start
+    if citations[end] >= n - end:
+        return n - end
+    return 0
 
-Runtime: 136 ms, faster than 78.18% of Python3 online submissions for H-Index II.
-Memory Usage: 20.5 MB, less than 64.84% of Python3 online submissions for H-Index II.
-
-"""
+###
 
 def hIndex(self, citations: List[int]) -> int:
     # find the first citations[i] where citations[i] >= n - i
