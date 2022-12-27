@@ -1,14 +1,14 @@
 def peakIndexInMountainArray(self, nums):
-    start, end = 0, len(nums) - 1
-    while start + 1 < end:
-        mid = (start + end) // 2
+    l, r = 0, len(nums) - 1
+    while l + 1 < r:
+        mid = (l + r) // 2
         if nums[mid] < nums[mid + 1]: 
-            start = mid
+            l = mid
         elif nums[mid] > nums[mid + 1]:
-            end = mid
+            r = mid
         else:
-            start = mid # end = mid也可以
+            l = mid # r = mid也可以
 
-    if nums[start] > nums[end]: 
-        return start
-    return end
+    if nums[l] > nums[r]: 
+        return l
+    return r
