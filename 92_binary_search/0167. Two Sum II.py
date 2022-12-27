@@ -1,9 +1,28 @@
-"""
+def twoSum(self, nums: List[int], target: int) -> List[int]:
+    left, right = 0, 0
+    for left in range(len(nums) - 1): 
+        right = self.found_right(nums, left, target - nums[left])
+        if right:
+            return [left + 1, right + 1]
+    return None
 
-Runtime: 100 ms, faster than 12.47% of Python3 online submissions for Two Sum II - Input array is sorted.
-Memory Usage: 14.4 MB, less than 10.94% of Python3 online submissions for Two Sum II - Input array is sorted.
+def found_right(self, nums, left, target):
+    start, end = left + 1, len(nums) - 1
+    while start + 1 < end:
+        mid = (start + end) // 2
+        if nums[mid] < target:
+            start = mid
+        else:
+            end = mid
 
-"""
+    if nums[start] == target:
+        return start
+    if nums[end] == target:
+        return end        
+
+    return None
+
+###
 
 def twoSum(self, numbers: List[int], target: int) -> List[int]:
     n = len(numbers)
