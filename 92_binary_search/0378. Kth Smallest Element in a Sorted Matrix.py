@@ -2,7 +2,7 @@ def kthSmallest(self, matrix, k):
     m, n = len(matrix), len(matrix[0])
     start, end = matrix[0][0], matrix[-1][-1]
     while start + 1 < end:
-        mid = start + (end - start) // 2
+        mid = (start + end) // 2
         count = self.num_of_less_or_equal(matrix, mid)
         if count < k:
             start = mid 
