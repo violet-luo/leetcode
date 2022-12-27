@@ -39,20 +39,20 @@ def searchMatrix(matrix, target):
                     r = mid - 1
     return False
 
-def searchMatrix(self, matrix, target):
-    if len(matrix) == 0:
+###
+
+def searchMatrix(matrix, target):
+    if not matrix or not matrix[0]:
         return False
-
-    y = len(matrix) - 1
-    x_range = len(matrix[0]) - 1
-    x = 0
-
-    while x <= x_range and y >= 0:
-        if target > matrix[y][x]:
-            x += 1
-        elif target < matrix[y][x]:
-            y -= 1
-        else:
+        
+    n, m = len(matrix), len(matrix[0])
+    # 从左下出发
+    i, j = n - 1, 0
+    while i >= 0 and j < m:
+        if matrix[i][j] == target:
             return True
-
-    return  False
+        elif matrix[i][j] < target:
+            j += 1
+        elif matrix[i][j] > target:
+            i -= 1
+    return False
