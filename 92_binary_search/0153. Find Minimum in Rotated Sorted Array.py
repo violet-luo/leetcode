@@ -1,10 +1,10 @@
 def findMin(self, nums): 
-    start, end = 0, len(nums) - 1
-    while start + 1 < end:
-        mid = (start + end) // 2
-        if nums[mid] > nums[end]: 
-            start = mid
+    l, r = 0, len(nums) - 1
+    while l + 1 < r:
+        mid = (l + r) // 2
+        if nums[mid] > nums[r]: 
+            l = mid
         else:
-            end = mid
+            r = mid
 
-    return(min(nums[start], nums[end]))
+    return(min(nums[l], nums[r]))
