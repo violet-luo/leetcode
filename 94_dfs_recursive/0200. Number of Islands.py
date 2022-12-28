@@ -4,6 +4,31 @@ def numIslands(grid):
     count = 0
 
     def dfs(x, y):
+        if x < 0 or x >= n or y < 0 or y >= m: return
+        if (x, y) in visited: return
+        if grid[x][y] == '0': return
+
+        grid[x][y] = '0'
+        visited.add((x,y))
+        for dx, dy in [(1, 0), (0, -1), (-1, 0), (0, 1)]:
+            dfs(x + dx, y + dy)
+
+    for i in range(n):
+        for j in range(m):
+            if grid[i][j] == '1': # 这里不一样
+                dfs(i, j)
+                count += 1
+
+    return count
+
+###
+
+def numIslands(grid):
+    n, m = len(grid), len(grid[0])
+    visited = set()
+    count = 0
+
+    def dfs(x, y):
         grid[x][y] = 0
         visited.add((x, y))
 
