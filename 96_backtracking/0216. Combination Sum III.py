@@ -1,8 +1,7 @@
 def combinationSum3(self, k, n):
-    res = []
-    subset = []
+    res, subset = [], []
 
-    def backtrack(n, k, sum, start_index):
+    def backtrack(start_index, sum):
         if sum > n: 
             return
         if sum == n and len(subset) == k:
@@ -10,13 +9,13 @@ def combinationSum3(self, k, n):
         for i in range(start_index, 9 - (k - len(subset)) + 2): #剪枝
             sum += i
             subset.append(i)
-            backtrack(n, k, sum, i + 1)
+            backtrack(i + 1, sum)
             sum -= i
             subset.pop()
 
-    backtrack(n, k, 0, 1)
+    backtrack(1, 0)
     return res
-    
+
 ### 
  
 def combinationSum3(self, k, n):
