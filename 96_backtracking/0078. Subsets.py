@@ -1,6 +1,5 @@
 def subsets(self, nums):
-    res = []
-    subset = []
+    res, subset = [], []
 
     def backtrack(nums, start_index):
         res.append(subset[:]) # 不能是res.append(subset)
