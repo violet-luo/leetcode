@@ -6,9 +6,8 @@ def isSameTree(self, p, q):
             continue
         elif not node1 or not node2:
             return False
-        else:
-            if node1.val != node2.val:
-                return False
-            queue.append((node1.right, node2.right))
-            queue.append((node1.left, node2.left))
+        if node1.val != node2.val:
+            return False
+        queue.append((node1.right, node2.right))
+        queue.append((node1.left, node2.left))
     return True
