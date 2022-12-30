@@ -1,9 +1,10 @@
 def isSymmetric(self, root):
     if not root:
         return True
-    queue = [(root.left, root.right)]
+    queue = collections.deque([(root.left, root.right)])
+    
     while queue:
-        l, r = queue.pop()
+        l, r = queue.popleft()
         if not l and not r:
             continue
         if not l or not r:
