@@ -1,9 +1,9 @@
-def isSubtree(self, root: Optional[TreeNode], subRoot: Optional[TreeNode]) -> bool:
+def isSubtree(self, root, subRoot):
     if not root and not subRoot:
         return True
-    if (not root and subRoot) or (root and not subRoot):
+    if not root or not subRoot:
         return False
-    if root.val == subRoot.val and self.isSameTree(root, subRoot):
+    if root.val == subRoot.val and self.isSameTree(root, subRoot): #灵魂
         return True
     return self.isSubtree(root.left, subRoot) or self.isSubtree(root.right, subRoot) #not and
 
