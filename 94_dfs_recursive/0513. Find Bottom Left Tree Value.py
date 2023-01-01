@@ -1,13 +1,16 @@
 def findBottomLeftValue(self, root):
-    self.max_level = 0
-    self.val = None
-    self.getLevel(root, 1)
-    return self.val
+    self.res = None
+    self.max_height = 0
+    self.get_height(root, 1)
+    return self.res
     
-def getLevel(self, root, level):
-    if not root: return
-    if level > self.max_level:
-        self.max_level = level
-        self.val = root.val
-    self.getLevel(root.left, level + 1)
-    self.getLevel(root.right, level + 1)
+def get_height(self, root, height):
+    if not root: 
+        return
+        
+    if height > self.max_height:
+        self.max_height = height
+        self.res = root.val
+        
+    self.get_height(root.left, height + 1)
+    self.get_height(root.right, height + 1)
