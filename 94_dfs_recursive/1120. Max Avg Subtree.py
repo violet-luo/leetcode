@@ -1,14 +1,14 @@
-def maximumAverageSubtree(self, root) -> float:
-    self.max_avg = 0
-    self.dfs(root)
+def maximumAverageSubtree(self, root):
+    self.max_avg = float('-inf')
+    self.get_sum(root)
     return self.max_avg
 
-def dfs(self, root):
+def get_sum(self, root):
     if not root:
         return 0, 0
-    l_total, l_size = self.dfs(root.left)
-    r_total, r_size = self.dfs(root.right)
-    total = l_total + root.val + r_total
+    l_sum, l_size = self.get_sum(root.left)
+    r_sum, r_size = self.get_sum(root.right)
+    sum = l_sum + root.val + r_sum
     size = l_size + 1 + r_size 
-    self.max_avg = max(self.max_avg, total/size)
-    return total, size
+    self.max_avg = max(self.max_avg, sum/size)
+    return sum, size
