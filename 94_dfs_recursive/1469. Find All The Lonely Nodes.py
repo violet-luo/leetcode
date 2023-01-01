@@ -1,5 +1,23 @@
 def getLonelyNodes(self, root):
     res = []
+
+    def dfs(root):
+        if not root:
+            return
+        if root.left and not root.right:
+            res.append(root.left.val)
+        if not root.left and root.right:
+            res.append(root.right.val)
+        dfs(root.left)
+        dfs(root.right)
+
+    dfs(root)
+    return res
+
+###
+
+def getLonelyNodes(self, root):
+    res = []
     self.dfs(root, res)
     return res
 
