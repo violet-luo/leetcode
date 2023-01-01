@@ -1,18 +1,18 @@
 def deepestLeavesSum(self, root):
     self.res = 0
-    self.max_level = -1
-    self.dfs(root, 0)
+    self.max_height = -1
+    self.get_height(root, 0)
     return self.res
 
-def dfs(self, root, level):
+def get_height(self, root, height):
     if not root:
         return
 
-    if level > self.max_level:
-        self.max_level = level 
+    if height > self.max_height:
+        self.max_height = height 
         self.res = root.val
-    elif level == self.max_level:
+    elif height == self.max_height:
         self.res += root.val
 
-    self.dfs(root.left, level + 1)
-    self.dfs(root.right, level + 1)
+    self.get_height(root.left, height + 1)
+    self.get_height(root.right, height + 1)
