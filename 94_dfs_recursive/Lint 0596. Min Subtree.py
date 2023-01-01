@@ -12,5 +12,5 @@ def get_sum(self, root):
     sum = root.val + left + right
     if sum < self.min_sum:
         self.min_sum = sum
-        self.res = node
+        self.res = root
     return sum
