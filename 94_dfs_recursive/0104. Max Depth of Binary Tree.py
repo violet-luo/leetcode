@@ -1,6 +1,6 @@
 def maxDepth(self, root):
     if not root:
         return 0
-    leftDepth = self.maxDepth(root.left)
-    rightDepth = self.maxDepth(root.right)
-    return max(leftDepth, rightDepth) + 1
+    left_depth = self.maxDepth(root.left)
+    right_depth = self.maxDepth(root.right)
+    return max(left_depth, right_depth) + 1
