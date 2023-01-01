@@ -1,4 +1,23 @@
 def closestValue(self, root, target):
+    def dfs(node):
+        nonlocal res
+        if not node:
+            return
+        if abs(node.val - target) < abs(res - target):
+            res = node.val
+        if node.val > target:
+            dfs(node.left)
+        elif node.val < target:
+            dfs(node.right)
+        return
+
+    res = root.val
+    dfs(root)
+    return res
+
+###
+
+def closestValue(self, root, target):
     upper = root
     lower = root
     while root:
