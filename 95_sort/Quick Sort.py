@@ -1,25 +1,24 @@
-def sortIntegers(self, A):
-    self.quickSort(A, 0, len(A) - 1)
+def sortIntegers(self, nums): #[5,4,3,2,1]
+    self.quickSort(nums, 0, len(nums) - 1)
 
-def quickSort(self, A, start, end):
+def quickSort(self, nums, start, end):
     if start >= end:
         return
     
     left, right = start, end
-    # key point 1: pivot is the value, not the index
-    pivot = A[(start + end) // 2]
+    # key point 1: pivot is value, not index
+    pivot = nums[(start + end) // 2]
 
-    # key point 2: every time you compare left & right, it should be 
-    # left <= right not left < right
+    # key point 2: left <= right not left < right
     while left <= right:
-        while left <= right and A[left] < pivot:
+        while left <= right and nums[left] < pivot: # left最后会走到index 3
             left += 1
-        while left <= right and A[right] > pivot:
+        while left <= right and nums[right] > pivot: # right最后会走到index 1
             right -= 1
         if left <= right:
-            A[left], A[right] = A[right], A[left]
+            nums[left], nums[right] = nums[right], nums[left]
             left += 1
             right -= 1
     
-    self.quickSort(A, start, right)
-    self.quickSort(A, left, end)
+    self.quickSort(nums, start, right)
+    self.quickSort(nums, left, end)
