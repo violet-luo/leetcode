@@ -1,11 +1,21 @@
-"""
+def isValid(self, s):
+    stack = []
+    
+    for item in s:
+        if item == '(':
+            stack.append(')')
+        elif item == '[':
+            stack.append(']')
+        elif item == '{':
+            stack.append('}')
+        elif stack == [] or stack[-1] != item:
+            return False
+        else:
+            stack.pop()
+    
+    return stack == []
 
-Runtime: 52 ms, faster than 18.00% of Python3 online submissions for Valid Parentheses.
-Memory Usage: 14 MB, less than 21.80% of Python3 online submissions for Valid Parentheses.
-
-https://leetcode.com/problems/valid-parentheses/discuss/9203/Simple-Python-solution-with-stack
-
-"""
+###
 
 def isValidParentheses(self, s):
     stack = []
