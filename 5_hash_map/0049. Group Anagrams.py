@@ -1,10 +1,6 @@
-def groupAnagrams(strs):
-    dic = {}
-
+def groupAnagrams(self, strs):
+    dic = collections.defaultdict(list)
     for str in strs:
         sorted_str = ''.join(sorted(str))
-        if sorted_str in dic:
-            dic[sorted_str].append(str)
-        else:
-            dic[sorted_str] = [str]
-    return dic.values()
+        dic[sorted_str].append(str)
+    return list(dic.values())
