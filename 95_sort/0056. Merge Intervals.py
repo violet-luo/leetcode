@@ -1,9 +1,16 @@
-"""
+def merge(self, intervals):
+    intervals.sort(key = lambda x:x[0])
+    res = [intervals[0]]
+    
+    for i in range(1, len(intervals)):
+        if res[-1][1] >= intervals[i][0]:
+            res[-1][1] = max(res[-1][1], intervals[i][1])
+        else:
+            res.append(intervals[i])
+    
+    return res
 
-Runtime: 92 ms, faster than 70.09% of Python3 online submissions for Merge Intervals.
-Memory Usage: 15.5 MB, less than 92.55% of Python3 online submissions for Merge Intervals.
-
-"""
+###
 
 def merge(self, intervals: List[List[int]]) -> List[List[int]]:
     res = []
