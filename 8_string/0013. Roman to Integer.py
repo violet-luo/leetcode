@@ -1,22 +1,11 @@
-"""
-Credit to @wenfengqiu
-
-abc
-
-1. if a < b, then b - a
-2. if a > b, then a + b
-3. the last digit is always positive
-
-Runtime: 48 ms, faster than 56.62% of Python3 online submissions for Roman to Integer.
-Memory Usage: 13.7 MB, less than 5.38% of Python3 online submissions for Roman to Integer.
-"""
-
 def romanToInt(self, s):
-    roman = {'M': 1000,'D': 500 ,'C': 100,'L': 50,'X': 10,'V': 5,'I': 1}
-    z = 0
-    for i in range(0, len(s) - 1):
-        if roman[s[i]] < roman[s[i+1]]:
-            z -= roman[s[i]]
+    roman_to_int = {'I': 1, 'V': 5, 'X':10, 'L':50, 'C':100, 'D':500, 'M':1000}
+    res = 0
+    
+    for i in range(len(s) - 1):
+        if roman_to_int[s[i]] < roman_to_int[s[i + 1]]:
+            res -= roman_to_int[s[i]]
         else:
-            z += roman[s[i]]
-    return z + roman[s[-1]]
+            res += roman_to_int[s[i]]
+
+    return res + roman_to_int[s[-1]] # 别忘了加最后的一个数字，不能用roman_to_int[i+1]
