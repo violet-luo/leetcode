@@ -1,13 +1,13 @@
 class MovingAverage:
-    def __init__(self, size):
-        self.queue = deque([])
-        self.size = size # window size 3
-        self.sum = 0.0
 
-    def next(self, val):
-        if len(self.queue) == self.size:
-            self.sum -= self.queue.popleft()
-            
-        self.sum += val
+    def __init__(self, size: int):
+        self.queue = collections.deque([])
+        self.size = size
+
+    def next(self, val: int) -> float:
         self.queue.append(val)
-        return self.sum / len(self.queue) # 不能是self.size
+
+        if len(self.queue) > self.size:
+            self.queue.popleft()
+
+        return sum(self.queue)/len(self.queue)
