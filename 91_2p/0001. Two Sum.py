@@ -1,5 +1,6 @@
 def twoSum(self, nums: List[int], target: int) -> List[int]:
-    # enumerate(["eat", "sleep") => [(0, 'eat'), (1, 'sleep')]
+    # 不能用dic因为dic[n]= i 会有重复
+    # enumerate(["eat", "sleep")] => [(0, 'eat'), (1, 'sleep')]
     # 这里的顺序不能变为(idx, num)因为sorted sort tuple的第一个element也就是num
     nums = [(num, idx) for idx, num in enumerate(nums)]
     # O(nlogn)
