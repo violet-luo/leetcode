@@ -1,5 +1,5 @@
 def lemonadeChange(self, bills):
-    five, ten, twenty = 0, 0, 0
+    five, ten = 0, 0
 
     for bill in bills:
         if bill == 5:
