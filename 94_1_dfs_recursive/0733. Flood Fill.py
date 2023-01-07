@@ -8,7 +8,7 @@ def floodFill(image, sr, sc, color):
         visited.add((x,y))
         for dx, dy in [(1,0), (0,1), (-1,0), (0,-1)]:
             x_, y_ = x + dx, y + dy
-            if 0 <= x_ < n and 0 <= y_ < m and (x_, y_) not in visited and image[x_][y_] == old_color:
+            if 0 <= x_ < n and 0 <= y_ < m and (x_, y_) not in visited and image[x_][y_] == old_color: # 而不是image[x_][y_] != color
                 dfs(x_, y_)
 
     dfs(sr, sc) 
