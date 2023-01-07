@@ -1,5 +1,5 @@
 def mySqrt(self, x):
-    l, r = 0, x
+    l, r = 0, x # r不能是x - 1, x是1的时候会报错
 
     while l + 1 < r:
         mid = (l + r) // 2
