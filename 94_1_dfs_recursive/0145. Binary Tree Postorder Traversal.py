@@ -1,5 +1,4 @@
-# 1. DFS
-def postorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
-    if root is None:
+def postorderTraversal(self, root):
+    if not root:
         return []
     return self.postorderTraversal(root.left) + self.postorderTraversal(root.right) + [root.val]
