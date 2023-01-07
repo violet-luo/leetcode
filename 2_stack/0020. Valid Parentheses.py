@@ -1,5 +1,25 @@
 def isValid(self, s):
     stack = []
+    for c in s:
+        if c == '(' or c == '{' or c == '[':
+            stack.append(c)
+        elif c == ')':
+            if stack == [] or stack.pop() != '(': # 不要忘了stack = [], 不然 str = ']' 过不了
+                return False
+        elif c == '}':
+            if stack == [] or stack.pop() != '{':
+                return False
+        elif c == ']':
+            if stack == [] or stack.pop() != '[':
+                return False
+        else:
+            return False
+    return stack == []
+
+###
+
+def isValid(self, s):
+    stack = []
     
     for item in s:
         if item == '(':
