@@ -1,12 +1,8 @@
 def kthSmallest(self, root, k):
-    self.array = []
-    self.dfs(root)
-    return self.array[k - 1]
+    arr = self.inorder(root)
+    return arr[k - 1]
 
-# 中序遍历
-def dfs(self, root):
+def inorder(self, root):
     if not root:
-        return
-    self.dfs(root.left)
-    self.array.append(root.val)
-    self.dfs(root.right)
+        return []
+    return self.inorder(root.left) + [root.val] + self.inorder(root.right)
