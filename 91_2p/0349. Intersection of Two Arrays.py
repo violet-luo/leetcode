@@ -4,7 +4,7 @@ def intersection(self, nums1, nums2):
     nums2.sort()
     i, j = 0, 0
 
-    while i < len(nums1) and j < len(nums2):
+    while i < len(nums1) and j < len(nums2): # i 和 j 是 index, 所以没有等号
         if nums1[i] < nums2[j]:
             i += 1
         elif nums1[i] > nums2[j]:
