@@ -1,3 +1,32 @@
+def searchRange(self, nums, target):
+    if not nums:
+        return [-1, -1]
+    l, r = 0, len(nums) - 1
+    first, last = -1, -1
+
+    while l + 1 < r:
+        mid = (l + r) // 2
+        if nums[mid] < target:
+            l = mid
+        elif nums[mid] > target:
+            r = mid
+        else:
+            r = mid
+    if nums[l] == target:
+        first = last =  l
+    elif nums[r] == target: #elif而不是if 这样不会overwrite
+        first = last = r
+    
+    for i in range(first, len(nums)):
+        if nums[i] == target:
+            last = i
+        else:
+            break
+    
+    return [first, last]
+
+###
+
 def searchRange(nums, target):
     if not nums:
         return [-1, -1]
