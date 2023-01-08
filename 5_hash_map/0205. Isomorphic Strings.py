@@ -1,9 +1,19 @@
-"""
+def isIsomorphic(s, t):
+    if len(s) != len(t):
+        return False
+    s_to_t = collections.defaultdict(str)
+    t_to_s = collections.defaultdict(str)
 
-Runtime: 48 ms, faster than 43.34% of Python3 online submissions for Isomorphic Strings.
-Memory Usage: 14 MB, less than 78.05% of Python3 online submissions for Isomorphic Strings.
+    for i in range(len(s)):
+        if s[i] not in s_to_t:
+            s_to_t[s[i]] = t[i]
+        if t[i] not in t_to_s:
+            t_to_s[t[i]] = s[i]
+        if s_to_t[s[i]] != t[i] or t_to_s[t[i]] != s[i]:
+            return False
+    return True
 
-"""
+###
 
 def isIsomorphic(self, s: str, t: str) -> bool:
     dic = {}
