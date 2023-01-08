@@ -3,16 +3,12 @@
 """
 
 def strStr(self, haystack, needle):
-    if not haystack or not needle:
-        return -1
-    if needle == "":
-        return 0
-
+    i, j = 0, 0
     h, n = len(haystack), len(needle)
 
-    for i in range(h - n + 1):
+    for i in range(h - n + 1): # 10 - 3 + 1 => [0, 7)
         for j in range(n):
-            if haystack[i + j] != needle[j]:
+            if haystack[i + j] != needle[j]: # 而不是haystack[i] != needle[j]
                 break
             if j == n - 1:
                 return i
