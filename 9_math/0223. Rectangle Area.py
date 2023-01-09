@@ -1,24 +1,11 @@
-"""
-
-Runtime: 52 ms, faster than 73.92% of Python3 online submissions for Rectangle Area.
-Memory Usage: 14.2 MB, less than 100.00% of Python3 online submissions for Rectangle Area.
-
-"""
-
-def computeArea(self, A: int, B: int, C: int, D: int, E: int, F: int, G: int, H: int) -> int:
-    # 调整两个矩形位置, 让第一个矩形靠最左边
-    if A > E:
-        return self.computeArea(E, F, G, H, A, B, C, D)
+def computeax1rea(self, ax1, ay1, ax2, ay2, bx1, by1, bx2, by2):
     # 没有重叠的情况
-    if B >= H or D <= F or C <= E:
-        return abs(A - C) * abs(B - D) + abs(E - G) * abs(F - H)
+    if ay2 <= by1 or bx1 >= ax2 or ay1 >= by2 or bx2 <= ax1:
+        return (ay2-ay1) * (ax2-ax1) + (by2-by1) * (bx2-bx1)
+    
     # 重叠情况
-    # 下边界
-    down = max(A, E)
-    # 上
-    up = min(C, G)
-    # 左
-    left = max(B, F)
-    # 右
-    right = min(D, H)
-    return abs(A - C) * abs(B - D) + abs(E - G) * abs(F - H) - abs(up - down) * abs(left - right)
+    left = max(bx1, ax1)
+    right = min(ax2, bx2)
+    up = min(by2, ay2)
+    down = max(by1, ay1)
+    return (ay2-ay1) * (ax2-ax1) + (by2-by1) * (bx2-bx1) - (up-down) * (right-left)
