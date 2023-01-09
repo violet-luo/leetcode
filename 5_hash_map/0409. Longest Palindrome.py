@@ -1,3 +1,17 @@
+def longestPalindrome(self, s: str) -> int:
+    counter = collections.Counter(s)
+    length = 0
+
+    for num, cnt in counter.items():
+        if cnt % 2 == 0:
+            length += cnt
+        elif cnt > 2: # 'ccc'
+            length += cnt - 1
+
+    return length + 1 if length < len(s) else length
+    
+###
+
 def longestPalindrome(self, s):
     res = set()
 
