@@ -1,29 +1,22 @@
-def majorityNumber(self, nums):
-    key1, counter1 = None, 0
-    key2, counter2 = None, 0
-    for num in nums:
-        if key1 == num:
-            counter1 += 1
-        elif key2 == num:
-            counter2 += 1
-        elif counter1 == 0:
-            key1 = num
-            counter1 += 1
-        elif counter2 == 0:
-            key2 = num
-            counter2 += 1
+def majorityElement(nums):
+    if not nums:
+        return []
+    count1, count2, candidate1, candidate2 = 0, 0, 0, 0
+    
+    for n in nums:
+        if n == candidate1:
+            count1 += 1
+        elif n == candidate2:
+            count2 += 1
+        elif count1 == 0:
+            candidate1, count1 = n, 1
+        elif count2 == 0:
+            candidate2, count2 = n, 1
         else:
-            counter1 -= 1
-            counter2 -= 1
+            count1, count2 = count1 - 1, count2 - 1
+    return [n for n in (candidate1, candidate2) if nums.count(n) > len(nums) // 3]
 
-    counter1, counter2 = 0, 0
-    for num in nums:
-        if num == key1:
-            counter1 += 1
-        if num == key2:
-            counter2 += 1
-
-    return key1 if counter1 > counter2 else key2
+###
   
 def majorityNumber(self, nums):
     table = {}
