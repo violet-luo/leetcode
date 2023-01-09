@@ -1,12 +1,10 @@
-import collections
-def countCharacters(words, property):
-    property_cnt = collections.Counter(property)
-    ans = 0
+def countCharacters(self, words, chars):
+    chars_counter = collections.Counter(chars)
+    res = 0
+
     for word in words:
-        word_cnt = collections.Counter(word)
-        for c in word_cnt:
-            if property_cnt[c] < word_cnt[c]:
-                break
-            else:
-                return word
-    return '-'
+        word_counter = collections.Counter(word)
+        if all([word_counter[c] <= chars_counter[c] for c in word_counter]):
+            res += len(word)
+    
+    return res
