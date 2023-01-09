@@ -1,3 +1,14 @@
+def sortedArrayToBST(self, nums):
+    if not nums:
+        return None
+    root_idx = len(nums) // 2
+    root = TreeNode(nums[root_idx])
+    root.left = self.sortedArrayToBST(nums[:root_idx])
+    root.right = self.sortedArrayToBST(nums[root_idx + 1:])
+    return root
+   
+### 
+
 def sortedArrayToBST(self, nums):    
    return convert(0, len(nums) - 1)
 def convert(left, right):
