@@ -1,4 +1,16 @@
 def canPermutePalindrome(self, s):
+    counter = collections.Counter(s) 
+    odd_times_ch = 0
+    
+    for num, cnt in counter.items():
+        if cnt % 2 == 1:
+            odd_times_ch += 1
+    
+    return odd_times_ch <= 1
+
+###
+
+def canPermutePalindrome(self, s):
     res = set()
 
     for char in s:
