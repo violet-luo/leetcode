@@ -1,4 +1,25 @@
 def countUnivalSubtrees(self, root):
+    res = 0
+    def dfs(node) -> int:
+        if not node:
+            return None
+        if not node.left and not node.right:
+            nonlocal res
+            res += 1
+            return node.val
+        left = dfs(node.left)
+        right = dfs(node.right)
+        if left == right == node.val or (not left and right == node.val) or (not right and left == node.val):
+            res += 1
+            return node.val
+        return float('inf')
+    
+    dfs(root)
+    return res
+
+###
+
+def countUnivalSubtrees(self, root):
     count = 0
 
     def dfs(root):
