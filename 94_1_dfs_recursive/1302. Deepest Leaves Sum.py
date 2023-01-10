@@ -1,7 +1,7 @@
 def deepestLeavesSum(self, root):
     self.res = 0
-    self.max_height = -1
-    self.get_height(root, 0)
+    self.max_height = 0
+    self.get_height(root, 1)
     return self.res
 
 def get_height(self, root, height):
