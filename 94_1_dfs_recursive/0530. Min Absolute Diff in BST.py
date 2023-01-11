@@ -1,4 +1,18 @@
 def getMinimumDifference(self, root):
+    nums = self.inorder(root)
+    min_diff = float('inf')
+    for i in range(1, len(nums)):
+        min_diff = min(min_diff, abs(nums[i] - nums[i - 1]))
+    return min_diff
+
+def inorder(self, root):
+    if not root:
+        return []
+    return self.inorder(root.left) + [root.val] + self.inorder(root.right)
+
+###
+
+def getMinimumDifference(self, root):
     def inorder(root):
         if not root:
             return
