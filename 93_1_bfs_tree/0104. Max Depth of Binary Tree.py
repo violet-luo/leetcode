@@ -5,8 +5,7 @@ def maxDepth(self, root):
     res = 0
 
     while queue:
-        n = len(queue)
-        for i in range(n):
+        for _ in range(len(queue)):
             node, level = queue.popleft()
             if node.left:
                 queue.append((node.left, level + 1))
