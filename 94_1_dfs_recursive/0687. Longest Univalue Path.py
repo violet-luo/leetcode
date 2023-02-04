@@ -1,17 +1,24 @@
 def longestUnivaluePath(self, root):
-    self.longest = 0
-    self.dfs(root, None)
-    return self.longest
+    maxLen = 0
+    def get_path_len(node):
+        nonlocal maxLen
+        if not node:
+            return 0
 
-def dfs(self, node, parent_val):
-    if not node:
-        return 0
+        left = get_path_len(node.left)
+        right = get_path_len(node.right)
+
+        if node.left and node.left.val == node.val:
+            left += 1
+        else:
+            left = 0
+        if node.right and node.right.val == node.val:
+            right += 1
+        else:
+            right = 0
+
+        maxLen = max(maxLen, left+right)
+        return max(left, right)
     
-    left = self.dfs(node.left, node.val)
-    right = self.dfs(node.right, node.val)
-    self.longest = max(self.longest, left + right)
-    
-    if node.val == parent_val:
-        return 0
-    else:
-        return max(left, right) + 1
+    get_path_len(root)
+    return maxLen
