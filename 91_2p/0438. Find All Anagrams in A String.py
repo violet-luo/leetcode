@@ -1,21 +1,29 @@
-def findAnagrams(s, p):
-    s_len, p_len, ans = len(s), len(p), []    
-    if s_len < p_len:
+def findAnagrams(self, s, p):
+    if len(p) > len(s):
         return []
-
-    s_count = [0] * 26
-    p_count = [0] * 26
-    for i in range(p_len):
-        s_count[ord(s[i]) - 97] += 1
-        p_count[ord(p[i]) - 97] += 1
-
-    if s_count == p_count:
-        ans.append(0)
-
-    for i in range(s_len - p_len):
-        s_count[ord(s[i]) - 97] -= 1
-        s_count[ord(s[i + p_len]) - 97] += 1
-        if s_count == p_count:
-            ans.append(i + 1)
-
+    if p == s:
+        return [0]
+        
+    p_hash = {}
+    s_hash = {}
+    
+    ans = [] 
+    for i in range(len(p)):
+        p_hash[p[i]] = p_hash.get(p[i],0) + 1 
+        s_hash[s[i]] = s_hash.get(s[i],0) + 1 
+        
+    if s_hash == p_hash:
+        ans.append(0)    
+       
+    for window_start in range(1, len(s) - len(p) + 1):
+        window_end = window_start + len(p) - 1 
+        s_hash[s[window_end]] = s_hash.get(s[window_end], 0) + 1 
+        
+        s_hash[s[window_start -1]] -= 1 
+        if s_hash[s[window_start -1]] == 0:
+            del s_hash[s[window_start -1]]
+        
+        if s_hash == p_hash:
+            ans.append(window_start)
+            
     return ans
