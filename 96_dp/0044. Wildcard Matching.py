@@ -1,5 +1,29 @@
 def isMatch(self, s, p):
     n, m = len(s), len(p)
+    dp = [[False] * (m + 1) for _ in range(n + 1)]
+
+    # 初始化：s,p 为空串时，匹配成功
+    dp[0][0] = True
+    # 初始化：s = 空串，p 只为 * 时，* 号也能替换成空串
+    for j in range(1, m + 1):
+        if p[j - 1] == '*':
+            dp[0][j] = dp[0][j - 1]
+
+    for i in range(1, n + 1):
+        for j in range(1, m + 1):
+            # p的第j个字符是 *，无论是s的前i个字符和p的前j-1个字符匹配成功，还是s的前i-1个字符和p的前j个字符匹配成功 
+            if p[j - 1] == '*':
+                dp[i][j] = dp[i][j - 1] or dp[i - 1][j]
+            # p的第j个字符是 *，如果dp[i-1][j-1]为true, 只有s[i-1]==p[j-1]或p=='?'时匹配成功
+            else:
+                if s[i - 1] == p[j - 1] or p[j - 1] == '?':
+                    dp[i][j] = dp[i - 1][j - 1]
+    return dp[n][m]
+
+###
+
+def isMatch(self, s, p):
+    n, m = len(s), len(p)
     dp = [[False] * (n + 1) for i in range(m + 1)]
     dp[0][0] = True
 
@@ -17,27 +41,6 @@ def isMatch(self, s, p):
                 dp[i][j] = dp[i-1][j-1] #再看左上方格子是不是T
                     
     return dp[m][n]
-  
-###
-# 九章解法
-def isMatch(self, s, p):
-  n, m = len(s), len(p)
-  dp = [[False] * (m + 1) for _ in range(n + 1)]
-
-  # initialization
-  dp[0][0] = True
-  for i in range(1, m + 1):
-      dp[0][i] = dp[0][i - 1] and p[i - 1] == '*'
-
-  # function
-  for i in range(1, n + 1):
-      for j in range(1, m + 1):
-          if p[j - 1] == '*':
-              dp[i][j] = dp[i - 1][j] or dp[i][j - 1]
-          else:
-              dp[i][j] = dp[i - 1][j - 1] and (s[i - 1] == p[j - 1] or p[j - 1] == '?')
-
-  return dp[n][m]
   
 ###
 # 滚动数组优化
