@@ -5,10 +5,8 @@ def wordBreak(self, s, wordDict):
 
     for i in range(1, n + 1):
         for j in range(i):
-            if not dp[j]:
-                continue
-            if s[j:i] in wordDict:
+            if dp[j] and s[j:i] in wordDict:
                 dp[i] = True
-                break 
+                break # 可行性，只要找到了，跳出循环
 
     return dp[n]
