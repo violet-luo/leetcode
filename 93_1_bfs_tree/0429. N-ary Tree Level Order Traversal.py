@@ -1,24 +1,16 @@
-"""
-class UndirectedGraphNode:
-     def __init__(self, x):
-         self.label = x
-         self.neighbors = []
-"""
+def levelOrder(self, root: 'Node') -> List[List[int]]:
+   if not root:
+       return []
+       
+   q = collections.deque([root])
+   res = []
 
-class Solution:
-    def levelOrder(self, root):
-        if not root:
-            return []
-        
-        queue = collections.deque([root])
-        res = []
-        
-        while queue:
-            level = []
-            for i in range(len(queue)): 
-                node = queue.popleft()
-                level.append(node.label)
-                for neighbor in node.neighbors:
-                    queue.append(neighbor)
-            res.append(level)
-        return res
+   while q:
+       level = []
+       for i in range(len(q)):
+           node = q.popleft()
+           level.append(node.val)
+           for child in node.children:
+               q.append(child)
+       res.append(level)
+   return res
