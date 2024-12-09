@@ -1,3 +1,25 @@
+def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
+    if not p and not q:
+        return True
+    if not p or not q:
+        return False
+
+    queue = collections.deque([(p, q)])
+    while queue:
+        l, r = queue.popleft()
+        if l.val != r.val:
+            return False
+        if (l.left and not r.left) or (l.right and not r.right) or (not l.left and r.left) or (not l.right and r.right):
+            return False
+        if l.left and r.left:
+            queue.append((l.left, r.left))
+        if l.right and r.right:
+            queue.append((l.right, r.right))
+
+    return True
+    
+###
+
 def isSameTree(self, p, q):
     queue = collections.deque([(p, q)])
     while queue:
