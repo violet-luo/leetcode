@@ -1,3 +1,23 @@
+def twoSum(self, numbers: List[int], target: int) -> List[int]:
+    n = len(numbers)
+    for i in range(n):
+        diff = target - numbers[i]
+        l, r = i + 1, n - 1
+        while l + 1 < r:
+            mid = (l + r) // 2
+            if numbers[mid] == diff:
+                return [i + 1, mid + 1]
+            elif numbers[mid] < diff:
+                l = mid
+            else:
+                r = mid
+        if numbers[l] == diff:
+            return [i + 1, l + 1]
+        if numbers[r] == diff:
+            return [i + 1, r + 1]
+                
+###
+
 def twoSum(self, nums: List[int], target: int) -> List[int]:
     left, right = 0, 0
     for left in range(len(nums) - 1): 
