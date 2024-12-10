@@ -1,3 +1,24 @@
+def wallsAndGates(self, rooms: List[List[int]]) -> None:
+    if not rooms or not rooms[0]:
+        return 0
+
+    n, m = len(rooms), len(rooms[0])
+    for i in range(n):
+        for j in range(m):
+            if rooms[i][j] == 0:
+                q = collections.deque([(i, j)])
+                while q:
+                    x, y = q.popleft()
+                    for dx, dy in [(0, 1), (0, -1), (1, 0), (-1, 0)]:
+                        next_x, next_y = x + dx, y + dy
+                        # 如果neighbor现有的value比移动x, y + 1大，overwrite
+                        if 0 <= next_x < n and 0 <= next_y < m and rooms[next_x][next_y] != -1:
+                            if rooms[next_x][next_y] > rooms[x][y] + 1:
+                                q.append((next_x, next_y))
+                                rooms[next_x][next_y] = rooms[x][y] + 1
+                                
+###
+
 def wallsAndGates(rooms):
     if not rooms or not rooms[0]: return rooms
     n, m = len(rooms), len(rooms[0])
