@@ -1,4 +1,19 @@
-# 1. DFS
+# 1. DFS Recursive
+def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+    res = []
+
+    def traverse(node):
+        if not node:
+            return
+        traverse(node.left)
+        res.append(node.val)
+        traverse(node.right)
+    
+    traverse(root)
+    return res
+
+###
+
 def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
     if root is None:
         return []
