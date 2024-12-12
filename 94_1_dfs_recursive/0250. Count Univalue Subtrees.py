@@ -1,3 +1,37 @@
+def countUnivalSubtrees(self, root: Optional[TreeNode]) -> int:
+    cnt = 0
+
+    def is_unival(node):
+        if node is None:
+            return True
+        nonlocal cnt
+
+        left_unival = is_unival(node.left)
+        right_unival = is_unival(node.right)
+
+        if left_unival and right_unival:
+            if node.left and node.right:
+                if node.left.val == node.right.val == node.val:
+                    cnt += 1
+                    return True
+            elif node.left:
+                if node.left.val == node.val:
+                    cnt += 1
+                    return True
+            elif node.right:
+                if node.right.val == node.val:
+                    cnt += 1
+                    return True
+            else:
+                cnt += 1 
+                return True
+            return False
+
+    is_unival(root)
+    return cnt
+
+###
+
 def countUnivalSubtrees(self, root):
     res = 0
     def dfs(node) -> int:
