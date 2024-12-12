@@ -1,3 +1,18 @@
+def sumOfLeftLeaves(self, root: Optional[TreeNode]) -> int:
+    def get_sum(node):
+        if not node:
+            return 0
+
+        left_sum = get_sum(node.left)
+        right_sum = get_sum(node.right)
+        if node.left and not node.left.left and not node.left.right:
+            left_sum += node.left.val
+        return left_sum + right_sum
+
+    return get_sum(root)
+    
+###
+
 def sumOfLeftLeaves(self, root):
     if not root:
         return 0
