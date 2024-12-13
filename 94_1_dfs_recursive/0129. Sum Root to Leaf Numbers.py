@@ -1,3 +1,24 @@
+def sumNumbers(self, root: Optional[TreeNode]) -> int:
+    res = 0
+
+    def traverse(node, path_sum):
+        nonlocal res
+        if not node:
+            return None
+
+        path_sum += node.val
+        if not node.left and not node.right:
+            res += path_sum
+        else:
+            path_sum *= 10
+            traverse(node.left, path_sum)
+            traverse(node.right, path_sum)
+
+    traverse(root, 0)
+    return res
+        
+###
+
 def sumNumbers(self, root):
     if not root:
         return 0
