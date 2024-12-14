@@ -1,20 +1,21 @@
-def closestValue(self, root, target):
-    def dfs(node):
+def closestValue(self, root: Optional[TreeNode], target: float) -> int:
+    res = root.val
+
+    def traverse(node):
         nonlocal res
         if not node:
-            return
-        if abs(node.val - target) < abs(res - target):
+            return None
+        if abs(node.val - target) < abs(res - target) or (abs(node.val - target) == abs(res - target) and node.val < res):
             res = node.val
-        if node.val > target:
-            dfs(node.left)
-        elif node.val < target:
-            dfs(node.right)
-        return
+        if node.val < target:
+            traverse(node.right)
+        elif node.val > target:
+            traverse(node.left)
+        else:
+            return
 
-    res = root.val
-    dfs(root)
+    traverse(root)
     return res
-
 ###
 
 def closestValue(self, root, target):
