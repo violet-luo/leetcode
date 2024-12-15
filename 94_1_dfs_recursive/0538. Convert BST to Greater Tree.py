@@ -1,3 +1,23 @@
+def convertBST(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+    total = 0
+    
+    def traverse(node) -> int:
+        nonlocal total
+        if not node:
+            return 0
+
+        traverse(node.right) #走到最右叶子
+        
+        total += node.val
+        node.val = total
+        
+        traverse(node.left)
+    
+    traverse(root)
+    return root
+
+###
+
 def convertBST(self, root):
     self.sum = 0
     self.dfs(root)
