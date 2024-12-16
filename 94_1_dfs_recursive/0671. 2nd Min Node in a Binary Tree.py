@@ -1,14 +1,19 @@
-def findSecondMinimumValue(self, root):
-    res = [float('inf')]
-    def traverse(node):
+def findSecondMinimumValue(self, root: Optional[TreeNode]) -> int:
+    min_val = root.val
+    second_min_val = float('inf')
+    
+    def traverse(node) -> None:
+        nonlocal second_min_val
         if not node:
-            return
-        if root.val < node.val < res[0]:
-            res[0] = node.val
+            return None
+        
+        if min_val < node.val < second_min_val:
+            second_min_val = node.val
         traverse(node.left)
         traverse(node.right)
+
     traverse(root)
-    return -1 if res[0] == float('inf') else res[0]
+    return second_min_val if second_min_val != float('inf') else -1
 
 ###
 
