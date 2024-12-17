@@ -1,25 +1,16 @@
-def maxDepth(self, root):
-    def get_height(node):
-        if node is None: 
+def maxDepth(self, root: 'Node') -> int:
+    def get_height(node) -> int:
+        if not node:
             return 0
-        elif not node.children:
-            return 1
-        else:
-            height = [get_height(child) for child in node.children]
-            return max(height) + 1
+        
+        max_depth = 0
+        for child in node.children:
+            depth = get_height(child)
+            max_depth = max(max_depth, depth)
+        return 1 + max_depth
+    
     return get_height(root)
 
-###
-
-def maxDepth(self, root):
-    if root is None: 
-        return 0 
-    elif root.children == []:
-        return 1
-    else: 
-        height = [self.maxDepth(c) for c in root.children]
-        return max(height) + 1 
-    
 ###
 
 def maxDepth(self, root):
