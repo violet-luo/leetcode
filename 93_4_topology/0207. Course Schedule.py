@@ -1,6 +1,6 @@
 def canFinish(self, numCourses: int, prereq) -> bool:
     # 1. 先建空图和空入度
-    graph = [[] for i in range(numCourses)]
+    graph = collections.defaultdict(list)
     indegree = [0] * numCourses
     
     # 2. 赋值图和入度
