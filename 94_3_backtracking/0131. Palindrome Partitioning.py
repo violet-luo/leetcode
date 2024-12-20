@@ -2,7 +2,7 @@ def partition(self, s):
     res, subset = [], []
 
     def backtrack(start_index):
-        if start_index >= len(s):  # 递归终止条件
+        if start_index == len(s):  # 递归终止条件
             res.append(subset[:])
         for i in range(start_index,len(s)):
             substring = s[start_index : i + 1]
