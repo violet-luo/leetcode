@@ -3,8 +3,10 @@ def combinationSum2(self, candidates, target):
     candidates.sort()  # 去重要sort
 
     def backtrack(start_idx, sum):
+        if sum > target:
+            return
         if sum == target: 
-            res.append(subset[:])
+            return res.append(subset[:])
         for i in range(start_idx, len(candidates)):
             if i > start_idx and candidates[i] == candidates[i-1]: # 与39区别，去重
                 continue 
