@@ -1,3 +1,25 @@
+def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+    if not root:
+        return None
+    if root == p or root == q:
+        return root
+    
+    # 找 p 和 q
+    left = self.lowestCommonAncestor(root.left, p, q)
+    right = self.lowestCommonAncestor(root.right, p, q)
+
+    # p 和 q 一边一个
+    if left and right:
+        return root
+    # 左子树有一个点或者左子树有LCA
+    if left:
+        return left
+    # 右子树有一个点或者右子树有LCA
+    if right:
+        return right
+            
+###
+
 def lca(self, root, A, B):
     if not root:
         return None
