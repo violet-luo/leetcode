@@ -1,3 +1,30 @@
+def pathSum(self, root: Optional[TreeNode], targetSum: int) -> int:
+    cnt = 0
+
+    def traverse(node, path) -> None:
+        nonlocal cnt
+        if not node:
+            return None
+        
+        path.append(node.val)
+        cur_sum = 0
+        # Traverse path in reverse to consider all sub-paths ending at the current node
+        for i in range(len(path) - 1, -1, -1):  
+            cur_sum += path[i]
+            if cur_sum == targetSum:
+                cnt += 1
+
+        traverse(node.left, path)
+        traverse(node.right, path)
+
+        path.pop()
+    
+    traverse(root, [])
+
+    return cnt
+
+###
+
 def pathSum(self, root, targetSum):
     if not root:
         return 0
