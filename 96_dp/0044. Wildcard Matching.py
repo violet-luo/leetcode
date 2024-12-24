@@ -1,3 +1,30 @@
+def isMatch(self, s: str, p: str) -> bool:
+    n, m = len(s), len(p)
+    # dp[i][j]：s的前i个字符 s[:i] 与 p的前j个字符 p[:j] 匹配是否成功
+    dp = [[False] * (m + 1) for _ in range(n + 1)]
+
+    dp[0][0] = True
+    # 重点：initialization
+    for j in range(1, m + 1):
+        # 若 p 的第 j 个字符 p[j - 1] 是'*', 说明第 j 个字符可有可无
+        # 只有前 j - 1个匹配得上，前 j 个也匹配得上
+        if p[j - 1] == '*':
+            dp[0][j] = dp[0][j - 1]
+
+    for i in range(1, n + 1):
+        for j in range(1, m + 1):
+            # p的第j个字符是 *，无论是s的前i个字符和p的前j-1个字符匹配成功，还是s的前i-1个字符和p的前j个字符匹配成功
+            if p[j - 1] == '*':
+                dp[i][j] = dp[i][j - 1] or dp[i - 1][j]
+            elif p[j - 1] == '?':
+                dp[i][j] = dp[i - 1][j - 1]
+            else:
+                dp[i][j] = dp[i - 1][j - 1] and p[j - 1] == s[i - 1]
+    
+    return dp[n][m]
+
+###
+
 def isMatch(self, s, p):
     n, m = len(s), len(p)
     dp = [[False] * (m + 1) for _ in range(n + 1)]
