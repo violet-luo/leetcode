@@ -1,17 +1,11 @@
-"""
-
-Runtime: 240 ms, faster than 16.59% of Python3 online submissions for Intersection of Two Linked Lists.
-Memory Usage: 29.1 MB, less than 47.46% of Python3 online submissions for Intersection of Two Linked Lists.
-
-"""
-
-def getIntersectionNode(self, L1: ListNode, L2: ListNode) -> ListNode:
+def getIntersectionNode(self, headA, headB):
     if not headA or not headB:
         return None
     
-    pA, pB = headA, headB
+    a, b = headA, headB
     
-    while pA is not pB: #preferred than pA != pB b/c we care more than the values
-        pA = headB if pA is None else pA.next #TLE if pA = pA.next if pA else headA
-        pB = headA if pB is None else pB.next
-    return pA
+    while a != b:
+	      # 当 a 到达链表末尾时，将它重新定位到链表 headB 的头部
+        a = headB if a is None else a.next
+        b = headA if b is None else b.next
+    return a # 当 a == b 时，返回当前节点（可能是交点，也可能是 None）
