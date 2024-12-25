@@ -1,9 +1,35 @@
-"""
-
-Runtime: 68 ms, faster than 90.36% of Python3 online submissions for Add Two Numbers.
-Memory Usage: 13.9 MB, less than 30.99% of Python3 online submissions for Add Two Numbers.
-
-"""
+def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
+    dummy = ListNode(0)
+    head = dummy
+    carry = 0
+    
+    while l1 and l2:
+        digit = (l1.val + l2.val + carry) % 10
+        carry = (l1.val + l2.val + carry) // 10
+        head.next = ListNode(digit)
+        head = head.next
+        l1 = l1.next
+        l2 = l2.next
+    
+    while l1:
+        digit = (l1.val + carry) % 10
+        carry = (l1.val + carry) // 10
+        head.next = ListNode(digit)
+        head = head.next
+        l1 = l1.next
+    
+    while l2:
+        digit = (l2.val + carry) % 10
+        carry = (l2.val + carry) // 10
+        head.next = ListNode(digit)
+        head = head.next
+        l2 = l2.next
+    
+    if carry > 0:
+        head.next = ListNode(carry)
+    return dummy.next
+        
+###
 
 def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
         dummy = cur = ListNode(0)
