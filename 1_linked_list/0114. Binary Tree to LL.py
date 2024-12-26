@@ -1,3 +1,18 @@
+def flatten(self, root: Optional[TreeNode]) -> None:
+    if root is None:
+        return None
+    left_tail = self.flatten(root.left) # 2 -> 3 -> 4, left_tail = 4
+    right_tail = self.flatten(root.right) # 5 -> 6, right_tail = 6
+    if left_tail:
+        left_tail.right = root.right  # 2 -> 3 -> 4 -> 5 -> 6
+        root.right = root.left  # 1 -> 2 -> 3 -> 4 -> 5 -> 6
+        root.left = None
+    # fall for left tail: 1只有左子树2
+    # fall for root: 只有1
+    return right_tail or left_tail or root
+        
+###
+
 def flatten(self, root):
     self.flatten_and_return_last_node(root)
 
