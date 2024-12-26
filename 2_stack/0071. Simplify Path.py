@@ -1,3 +1,24 @@
+def simplifyPath(self, path: str) -> str:
+    paths = path.split('/')
+    stack = []
+
+    for p in paths:
+        if p == '':
+            continue
+        elif p == '.':
+            continue
+        elif p == '..':
+            if len(stack) > 0:
+                stack.pop()
+            else:
+                continue
+        else:
+            stack.append(p)
+    
+    return '/' + '/'.join(stack)
+    
+###
+
 def simplifyPath(self, path):
     path = path.split('/')
     stack = []
