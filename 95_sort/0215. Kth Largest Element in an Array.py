@@ -1,22 +1,17 @@
-"""
+def kthLargestElement(self, nums, k):
+    if not nums or k < 1 or len(nums) < k:
+        return None
+    # 把第 k 大元素的索引转换成从 0 开始的目标索引，即 len(nums) - k。比如最大的元素 k = 1, 索引是 len(nums) - 1
+    target_index = len(nums) - k
+    return self.partition(nums, 0, len(nums) - 1, target_index) 
 
-Runtime: 1056 ms, faster than 14.24% of Python3 online submissions for Kth Largest Element in an Array.
-Memory Usage: 18.6 MB, less than 7.70% of Python3 online submissions for Kth Largest Element in an Array.
-
-https://www.jiuzhang.com/solution/kth-largest-element/#tag-lang-python
-
-"""
-
-def kthLargestElement(self, k, nums):
-    n = len(nums)
-    # convert the kth largest to the kth smallest
-    k = n - k
-    return self.partition(nums, 0, n - 1, k)
-
+# 标准快搜
 def partition(self, nums, start, end, k):
+   if start == end: # 只有一个元素时直接返回
+        return nums[k]
+        
     left, right = start, end
-    pivot = nums[left]
-
+    pivot = nums[(start + end) // 2]
     while left <= right:
         while left <= right and nums[left] < pivot:
             left += 1
@@ -24,12 +19,12 @@ def partition(self, nums, start, end, k):
             right -= 1
         if left <= right:
             nums[left], nums[right] = nums[right], nums[left]
-            left += 1
-            right -= 1
-
-    # if the kth smallest is on the right side, search the right side
+            left, right = left + 1, right - 1
+            
+    # 如果索引k小于索引right，搜索左侧
     if k <= right:
         return self.partition(nums, start, right, k)
     if k >= left:
         return self.partition(nums, left, end, k)
+    
     return nums[k]
