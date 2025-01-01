@@ -1,16 +1,16 @@
-def getHint(secret, guess):
-    bull, cow = 0, 0
-    s, g = {}, {}
+def getHint(self, secret: str, guess: str) -> str:
+    bulls, cows = 0, 0
+    secret_count, guess_count = collections.defaultdict(int), collections.defaultdict(int) # 不能写 secret_count = guess_count = collections.defaultdict(int) or they will refer to the same dict
 
-    for i in range(len(secret)):
-        if secret[i] == guess[i]: # '1'
-            bull += 1
+    for i in range(len(secret)): # guess might not be long enough
+        if secret[i] == guess[i]:
+            bulls += 1
         else:
-            s[secret[i]] = s.get(secret[i], 0) + 1 # {'1':1, '2':1, '3':1}
-            g[guess[i]] = g.get(guess[i], 0) + 1 # {'0':1, '1':2}
+            secret_count[secret[i]] += 1
+            guess_count[guess[i]] += 1
 
-    for k in s: # '1'
-        if k in g:
-            cow += min(s[k], g[k]) # 1
-
-    return '{0}A{1}B'.format(bull, cow)
+    for g in guess_count:
+        if g in secret_count:
+            cows += min(secret_count[g], guess_count[g])
+    
+    return f"{bulls}A{cows}B"
