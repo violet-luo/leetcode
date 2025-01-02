@@ -1,15 +1,19 @@
 class TwoSum:
+
     def __init__(self):
-        self.nums = {}
+        self.dic = {} # 不能用defaultdict
 
     def add(self, number: int) -> None:
-        if number in self.nums:
-            self.nums[number] += 1
+        if number in self.dic:
+            self.dic[number] += 1
         else:
-            self.nums[number] = 1
+            self.dic[number] = 1
 
     def find(self, value: int) -> bool:
-        for num in self.nums:
-            if value - num in self.nums and (value - num != num or self.count[num] > 1):
-                return True
+        for num in self.dic:
+            complement = value - num
+            if complement in self.dic:
+                # Special case: if the number is the same, we need at least two occurrences of it
+                if complement != num or self.dic[num] > 1:
+                    return True
         return False
