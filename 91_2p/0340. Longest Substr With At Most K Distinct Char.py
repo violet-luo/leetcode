@@ -1,16 +1,15 @@
-from collections import Counter
-def lengthOfLongestSubstringKDistinct(s, k):
-    max_len, counter = 0, Counter()
-    n = len(s)
-    left = 0
+def lengthOfLongestSubstringKDistinct(self, s: str, k: int) -> int:
+    l = 0
+    max_len = 0
+    char_to_freq = collections.defaultdict(int)
 
-    for right in range(n):
-        counter[s[right]] += 1
-        while right < n and len(counter) > k:
-            counter[s[left]] -= 1
-            if counter[s[left]] == 0:
-                del counter[s[left]]
-            left += 1
-        max_len = max(max_len, right - left + 1)
+    for r in range(len(s)):
+        char_to_freq[s[r]] += 1
+        while len(char_to_freq) > k:
+            char_to_freq[s[l]] -= 1
+            if char_to_freq[s[l]] == 0:
+                del char_to_freq[s[l]]
+            l += 1
+        max_len = max(max_len, r - l + 1)
         
     return max_len
