@@ -3,6 +3,29 @@
 1. Binary Search
 
 """
+def findDuplicate(self, nums):
+    start, end = 1, len(nums) - 1
+    
+    while start + 1 < end:
+        mid = (start + end) // 2
+        if self.smaller_than_or_equal_to(nums, mid) > mid:
+            end = mid
+        else:
+            start = mid
+            
+    if self.smaller_than_or_equal_to(nums, start) > start:
+        return start
+        
+    return end
+    
+def smaller_than_or_equal_to(self, nums, val):
+    count = 0
+    for num in nums:
+        if num <= val:
+            count += 1
+    return count
+
+###
 
 def findDuplicate(nums):
     l, r = 1, len(nums) - 1
