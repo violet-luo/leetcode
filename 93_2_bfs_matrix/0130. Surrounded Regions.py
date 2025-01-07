@@ -1,40 +1,41 @@
-import collections
-class Solution:
-    def solve(self, board):
-        if not board: return 
-        n, m = len(board), len(board[0])
+    def solve(self, board: List[List[str]]) -> None:
+        """
+        Do not return anything, modify board in-place instead.
+        """
+        m, n = len(board), len(board[0])
+        q = collections.deque()
 
-        def bfs(x,y):
-            queue = collections.deque([(x,y)])
-            board[x][y] = '#'
-            
-            while queue:
-                x, y = queue.popleft()
-                for dx, dy in [(0, 1), (0, -1), (1, 0), (-1, 0)]:
-                    new_x, new_y = x + dx, y + dy
-                    if 0 <= new_x < len(board) and 0 <= new_y < len(board[0]) and board[new_x][new_y] == 'O':
-                        board[new_x][new_y] = '#'
-                        queue.append((new_x,new_y))
-        
-        for i in range(n):
+        # 1. 第1列和最后一列
+        for i in range(m):
             if board[i][0] == 'O':
-                bfs(i,0)
-            if board[i][m-1] == 'O':
-                bfs(i,m-1)
+                q.append((i, 0))
+            if board[i][n - 1] == 'O':
+                q.append((i, n - 1))
         
-        for j in range(m):
+        # 2. 第一行和最后一行
+        for j in range(n):
             if board[0][j] == 'O':
-                bfs(0,j)
-            if board[n-1][j] == 'O':
-                bfs(n-1,j)
+                q.append((0, j))
+            if board[m - 1][j] == 'O':
+                q.append((m - 1, j))
         
-        for i in range(n):
-            for j in range(m):
-                if board[i][j] == '#':
-                    board[i][j] = 'O'
-                elif board[i][j] == 'O':
-                    board[i][j] = 'X'
-
+        # 3. 把所有连着外围的O变成#
+        while q:
+            x, y = q.popleft()
+            board[x][y] = '#'
+            for dx, dy in [(1,0), (0,1), (-1,0), (0, -1)]:
+                new_x, new_y = x+dx, y+dy
+                if 0 <= new_x < m and 0 <= new_y < n and board[new_x][new_y] == "O":
+                    board[new_x][new_y] = "#"
+                    q.append((new_x, new_y))
+        
+        for i in range(m):
+            for j in range(n):
+                if board[i][j] == "O":
+                    board[i][j] = "X"
+                elif board[i][j] == "#":
+                    board[i][j] = "O"
+                    
 ###
 
 def surroundedRegions(board):
