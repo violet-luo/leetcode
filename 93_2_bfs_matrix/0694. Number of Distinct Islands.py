@@ -5,22 +5,25 @@ def numDistinctIslands(self, grid: List[List[int]]) -> int:
     n, m = len(grid), len(grid[0])
     shapes = set()
 
+    def bfs(i, j):
+        q = collections.deque([(i, j)])
+        grid[i][j] = 0
+        shape = []
+        while q:
+            x, y = q.popleft()
+            for dx, dy in [(1, 0), (0, -1), (-1, 0), (0, 1)]:
+                new_x, new_y = x + dx, y + dy
+                if 0 <= new_x < n and 0 <= new_y < m and grid[new_x][new_y] == 1:
+                    grid[new_x][new_y] = 0
+                    q.append((new_x, new_y))
+                    shape.append((new_x - i, new_y - j))
+        return tuple(sorted(shape))
+
     for i in range(n):
         for j in range(m):
             if grid[i][j] == 1:
-                q = collections.deque([(i, j)])
-                grid[i][j] = 0
-                shape = []
-                while q:
-                    x, y = q.popleft()
-                    for dx, dy in [(1, 0), (0, -1), (-1, 0), (0, 1)]:
-                        new_x, new_y = x + dx, y + dy
-                        if 0 <= new_x < n and 0 <= new_y < m and grid[new_x][new_y] == 1:
-                            grid[new_x][new_y] = 0
-                            q.append((new_x, new_y))
-                            shape.append((new_x - i, new_y - j))
-
-                shapes.add(tuple(sorted(shape)))
+                shape = bfs(i, j)
+                shapes.add(shape)
 
     return len(shapes)
     
