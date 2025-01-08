@@ -24,20 +24,18 @@ def isSubtree(self, root: Optional[TreeNode], subRoot: Optional[TreeNode]) -> bo
 
 ###
 
-def isSubtree(self, root, subRoot):
-    if not root and not subRoot:
-        return True
-    if not root or not subRoot:
+def isSubtree(self, root: Optional[TreeNode], subRoot: Optional[TreeNode]) -> bool:
+    if root is None: # 这里不需要check subRoot is None, 因为反正也是 False
         return False
-    if root.val == subRoot.val and self.isSameTree(root, subRoot): #灵魂
+    if self.isSameTree(root, subRoot):
         return True
-    return self.isSubtree(root.left, subRoot) or self.isSubtree(root.right, subRoot) #not and
+    return self.isSubtree(root.left, subRoot) or self.isSubtree(root.right, subRoot)
 
 def isSameTree(self, p, q):
     if not p and not q:
         return True
     elif not p or not q:
         return False
-    if p.val != q.val: #出口
+    if p.val != q.val:
         return False
     return self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
