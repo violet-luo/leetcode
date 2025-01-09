@@ -1,4 +1,35 @@
 def sequenceReconstruction(self, nums: List[int], sequences: List[List[int]]) -> bool:
+    graph = collections.defaultdict(list)
+    indegree = collections.defaultdict(int)
+
+    for seq in sequences:
+        for i in range(len(seq) - 1):
+            prereq, req = seq[i], seq[i + 1]
+            graph[prereq].append(req)
+            indegree[req] += 1
+            
+    q = collections.deque([num for num in nums if indegree[num] == 0])
+    order = []
+
+    while q:
+        if len(q) > 1:
+            return False
+        # 优化：比模板多了这个判断
+        # 如果queue里有超过一个节点，说明排序的结果有多种可能
+        # e.g. nums = [1,2,3], seq = [[1,2],[1,3]]
+        # 处理节点1时，queue = [2, 3], 排序不唯一
+        node = q.popleft()
+        order.append(node)
+        for nxt in graph[node]:
+            indegree[nxt] -= 1
+            if indegree[nxt] == 0:
+                q.append(nxt)
+    
+    return order == nums
+    
+###
+
+def sequenceReconstruction(self, nums: List[int], sequences: List[List[int]]) -> bool:
     graph = self.build_graph(nums, sequences)
     order = self.topological_sort(graph, nums)
     return order == nums
