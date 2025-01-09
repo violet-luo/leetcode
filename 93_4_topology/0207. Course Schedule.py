@@ -1,3 +1,30 @@
+def canFinish(self, numCourses: int, prerequisite: List[List[int]]) -> bool:
+    # 1. 建立graph, 从前课到后课
+    # 2. 建立indegree, 显示每节课有多少前置课
+    graph = collections.defaultdict(list) # {0: [1, 2], 1: [3], 2: [3]})
+    indegree = collections.defaultdict(int) # {1: 1, 2: 1, 3: 2})
+
+    for course, prereq in prerequisite:
+        graph[prereq].append(course)
+        indegree[course] += 1
+  
+    # 3. 将每个入度为0的点放入队列 queue 中作为起始节点
+    # in range(numCourses) 而不是 in graph, 因为prereqs might be []
+    q = collections.deque([node for node in range(numCourses) if indegree[node] == 0]) 
+    order = []
+
+    while q:
+        cur_course = q.popleft()
+        order.append(cur_course)
+        for next_course in graph[cur_course]:
+            indegree[next_course] -= 1
+            if indegree[next_course] == 0:
+                q.append(next_course)
+    
+    return len(order) == numCourses
+        
+###
+
 def canFinish(self, numCourses: int, prereq) -> bool:
     # 1. 先建空图和空入度
     graph = collections.defaultdict(list)
