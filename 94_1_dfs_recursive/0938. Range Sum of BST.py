@@ -13,11 +13,11 @@ def rangeSumBST(self, root, low, high):
 def rangeSumBST(self, root: Optional[TreeNode], low: int, high: int) -> int:
     if not root:
         return 0
-    sum = 0
+    total = 0
     if root.val > low: # 需要访问左子树
-        sum += self.rangeSumBST(root.left, low, high)
+        total += self.rangeSumBST(root.left, low, high)
     if root.val < high:
-        sum += self.rangeSumBST(root.right, low, high)
+        total += self.rangeSumBST(root.right, low, high)
     if low <= root.val <= high:
-        sum += root.val     
-    return sum
+        total += root.val     
+    return total
