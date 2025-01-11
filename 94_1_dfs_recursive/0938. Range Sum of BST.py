@@ -1,3 +1,24 @@
+def rangeSumBST(self, root: Optional[TreeNode], low: int, high: int) -> int:
+    total = 0
+    def traverse(node):
+        nonlocal total
+        if node is None:
+            return None
+        
+        if node.val < low:
+            traverse(node.right)
+        elif node.val > high:
+            traverse(node.left)
+        else:
+            total += node.val
+            traverse(node.left)
+            traverse(node.right)
+    
+    traverse(root)
+    return total
+    
+###
+
 def rangeSumBST(self, root, low, high):
     if not root:
         return 0 
