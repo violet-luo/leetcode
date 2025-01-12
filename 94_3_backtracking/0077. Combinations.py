@@ -3,7 +3,8 @@ def combine(self, n: int, k: int) -> List[List[int]]:
     
     def backtrack(start_index):
         if len(combination) == k:
-            return res.append(subset[:])
+            res.append(subset[:])
+            return
         for i in range(start_index, n - (k - len(combination)) + 2): #剪枝
             combination.append(i)
             backtrack(i + 1)
@@ -11,7 +12,7 @@ def combine(self, n: int, k: int) -> List[List[int]]:
     
     backtrack(1) # range from 1
     return res
-
+    
 ###
 
 def combine(self, n, k):
