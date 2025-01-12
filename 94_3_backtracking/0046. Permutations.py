@@ -1,3 +1,28 @@
+def permute(self, nums: List[int]) -> List[List[int]]:
+    if not nums:
+        return [[]]
+        
+    res, permutation = [], []
+
+    def backtrack(nums, visited):
+        if len(nums) == len(permutation):
+            res.append(permutation[:])
+            return
+        
+        for num in nums:
+            if num in visited:
+                continue
+            permutation.append(num)
+            visited.add(num)
+            backtrack(nums, visited)
+            visited.remove(num)
+            permutation.pop()
+    
+    backtrack(nums, set())
+    return res
+
+###
+
 def permute(self, nums):
     res = []
     subset = []
