@@ -1,20 +1,20 @@
-def combinationSum(self, candidates, target):
+def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
     res, subset = [], []
-    candidates = sorted(candidates) # 不知道为什么不sort过不了
-
-    def backtrack(start_index, sum):
-        if sum > target:
+    candidates.sort() #不sort的话 [8,7,4,3] target = 11会直接fail
+    
+    def backtrack(start_index, total):
+        if total > target:
             return 
-        if sum == target:
-            return res.append(subset[:])
+        if total == target:
+            res.append(subset[:])
         
         for i in range(start_index, len(candidates)):
-            if sum + candidates[i] > target:
+            if total + candidates[i] > target:
                 return 
-            sum += candidates[i]
+            total += candidates[i]
             subset.append(candidates[i])
-            backtrack(i, sum)
-            sum -= candidates[i]
+            backtrack(i, total)
+            total -= candidates[i]
             subset.pop()
     
     backtrack(0, 0)
