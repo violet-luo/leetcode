@@ -1,11 +1,10 @@
-"""
-Credit to @StefanPochmann
+def missingNumber(self, nums: List[int]) -> int:
+    actual = sum(nums)
+    expected = 0
 
-Runtime: 136 ms, faster than 82.59% of Python3 online submissions for Missing Number.
-Memory Usage: 15.2 MB, less than 6.45% of Python3 online submissions for Missing Number.
+    # for n in range(1, len(nums) + 1):
+    #     expected += n
+    
+    expected = len(nums) * (len(nums) + 1) // 2
 
-"""
-
-def missingNumber(self, nums):
-    n = len(nums)
-    return int(n * (n+1) / 2 - sum(nums))
+    return expected - actual
