@@ -23,17 +23,19 @@ def permute(self, nums: List[int]) -> List[List[int]]:
 
 ###
 
-def permute(self, nums):
-    res = []
-    subset = []
+def permute(self, nums: List[int]) -> List[List[int]]:
+    res, subset = [], []
 
     def backtrack(nums):
         if len(subset) == len(nums):
-            return res.append(subset[:]) 
-        for i in range(len(nums)): #因为是集合而不是组合，所以从0开始遍历
-            if nums[i] in subset: #去重
+            res.append(subset[:]) 
+            return
+        for num in nums: # 因为是集合而不是组合，所以从0开始遍历
+            # 去重，如果不去重，会得到[1, 1, 1]
+            # 组合不用加去重这两行，因为组合是从start_index开始
+            if num in subset: 
                 continue
-            subset.append(nums[i])
+            subset.append(num)
             backtrack(nums)
             subset.pop()
 
