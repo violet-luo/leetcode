@@ -1,23 +1,24 @@
 def pathSum(self, root: Optional[TreeNode], targetSum: int) -> List[List[int]]:
     res = []
+    path = []
 
-    def traverse(node, path, path_sum):
+    def traverse(node, path_sum: int) -> None:
         if not node:
             return None
+        
+        path_sum += node.val
+        path.append(node.val)
+        
+        if not node.left and not node.right and path_sum == targetSum:
+            # path 只是 pointer to the actual subset, at the end subset will be []
+            # path[:] creates shallow copy, create a snapshot of subset at that moment
+            res.append(path[:])
+        traverse(node.left, path_sum)
+        traverse(node.right, path_sum)
 
-        # 不能是 path.append(node.val)
-        # When you call path.append(node) in one recursive branch
-        # it modifies the same list path used in other branches of the recursion.
-        # 会需要backtrack
-        new_path = path + [node.val]
-        new_path_sum = path_sum + node.val
-        if not node.left and not node.right and new_path_sum == targetSum:
-            res.append(new_path)
-        else:
-            traverse(node.left, new_path, new_path_sum)
-            traverse(node.right, new_path, new_path_sum)
-
-    traverse(root, [], 0)
+        path.pop()
+    
+    traverse(root, 0)
     return res
     
 ###
