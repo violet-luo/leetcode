@@ -1,3 +1,31 @@
+def reverseBetween(self, head: Optional[ListNode], left: int, right: int) -> Optional[ListNode]:
+    dummy = ListNode(0, head)
+    cur = head
+    prev = dummy
+
+    # prev走到换的left前, cur走到left
+    # prev在1，cur在2
+    for _ in range(left - 1):
+        prev = prev.next
+        cur = cur.next
+    leftmost = prev
+    rightmost = cur
+
+    # 206. reverse LL
+    prev = None
+    for _ in range(right - left + 1): # three nodes, swap three times
+        tmp = cur.next
+        cur.next = prev
+        prev = cur
+        cur = tmp
+        
+    leftmost.next = prev
+    rightmost.next = cur
+    
+    return dummy.next
+
+###
+
 def reverseBetween(self, head, left, right):
     dummy = ListNode(0)
     dummy.next = head
