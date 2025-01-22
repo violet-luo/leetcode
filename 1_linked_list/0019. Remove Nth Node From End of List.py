@@ -1,13 +1,21 @@
-"""
+def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
+    dummy = ListNode(0, head)
+    cur = head
 
-Challenge is to do it without getting the length of the linked list
-创建两个指针，slow指向表头、fast指向链表第n个元素
-循环后移n次，直至fast=Null，此时slow指向倒数第n个元素
+    length = 0
+    while cur:
+        length += 1
+        cur = cur.next
 
-Runtime: 56 ms, faster than 16.79% of Python3 online submissions for Remove Nth Node From End of List.
-Memory Usage: 13.9 MB, less than 26.61% of Python3 online submissions for Remove Nth Node From End of List.
+    cur = dummy
+    for _ in range(length - n):
+        cur = cur.next
+    
+    cur.next = cur.next.next
+    return dummy.next
+        
+###
 
-"""
 
 def removeNthFromEnd(self, head, n):
         dummy = ListNode(-1)
