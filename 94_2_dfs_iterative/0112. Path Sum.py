@@ -1,3 +1,22 @@
+def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -> bool:
+    if not root:
+        return False
+        
+    stack = [root]
+    while stack:
+        cur = stack.pop()
+        if not cur.left and not cur.right and cur.val == targetSum:
+            return True
+        if cur.left:
+            cur.left.val += cur.val
+            stack.append(cur.left)
+        if cur.right:
+            cur.right.val += cur.val
+            stack.append(cur.right)
+    return False
+
+###
+
 def hasPathSum(self, root, targetSum):
     if not root:
         return False
