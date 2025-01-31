@@ -64,19 +64,16 @@ class LRUCache:
     def put(self, key: int, value: int) -> None:
         if key in self.dic: # 如果键已存在，把节点移到头部
             self.dic[key].value = value # 更新该键的值
-
             node = self.dic[key] # 获取该键对应的节点
             self.dll.delete(node)
             inserted_node = self.dll.insert_to_front(key,node.value) # 将节点插入到头部
             self.dic[key] = inserted_node # 更新哈希表中的值
-            
         else:
-            if self.capacity > self.dll.length: # 链表未满
-                inserted_node = self.dll.insert_to_front(key, value)
-                self.dic[key] = inserted_node
-            else: 
-                remove_node = self.dll.tail # 链表已满，删除最久未使用的尾结点
+            if self.capacity == self.dll.length:  # 缓存已满，删除最久未使用的尾结点
+                remove_node = self.dll.tail
                 self.dll.delete(remove_node)
                 del self.dic[remove_node.key]
-                inserted_node = self.dll.insert_to_front(key, value)
-                self.dic[key] = inserted_node
+            
+            # 插入新节点
+            inserted_node = self.dll.insert_to_front(key, value)
+            self.dic[key] = inserted_node
